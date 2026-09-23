@@ -18,10 +18,11 @@ window.SITE = {
     discord: 'titodevsec',
     availability: 'Open for freelance work',
     avatar: 'images/profile.jpeg',
-    // Hero figure: a PNG cut-out with a TRANSPARENT background (e.g. made with remove.bg).
-    // Leave empty to show the plain grey hero. images/tito-hero.png currently has a solid
-    // black background, so it is switched off until you replace it with your own cut-out.
-    heroImage: '',
+    // Hero figure: a PNG cut-out with a TRANSPARENT background. Leave empty for the plain grey hero.
+    heroImage: 'images/hero.png',
+    // Rotation applied to the figure in degrees (negative = counter-clockwise) to stand it upright.
+    // Set to 0 once the image file itself is upright.
+    heroRotate: -24,
   },
 
   // Preloader greetings (home page). First one holds longer, the rest flick by.

@@ -26,11 +26,24 @@
       App.cleanups.push(fx.marquee(hero));
       // Hero figure: only shown when a (transparent) cut-out is configured in js/data.js
       const wrap = $('[data-hero-img]', hero);
-      const src = (SITE.profile && SITE.profile.heroImage) || '';
+      const profile = SITE.profile || {};
+      const src = profile.heroImage || '';
       if (wrap) {
         const img = wrap.querySelector('img');
+        const fig = wrap.querySelector('.hero__fig');
         if (src && img) { img.src = src; wrap.hidden = false; } else { wrap.hidden = true; }
         if (src) gsap.to(wrap, { y: 120, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+        // Stand the figure upright: rotate around its bottom centre and push it down just enough
+        // that the raised bottom corner stays below the hero's edge (no diagonal cut visible).
+        const deg = Number(profile.heroRotate) || 0;
+        if (src && fig && deg) {
+          const apply = () => {
+            const ratio = img.naturalHeight ? img.naturalWidth / img.naturalHeight : 0.75;
+            const offset = Math.abs(Math.sin(deg * Math.PI / 180)) * ratio * 50 + 2; // % of the image height
+            fig.style.transform = `translateY(${offset.toFixed(1)}%) rotate(${deg}deg)`;
+          };
+          if (img.complete && img.naturalWidth) apply(); else img.addEventListener('load', apply, { once: true });
+        }
       }
     }
   };

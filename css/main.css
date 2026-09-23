@@ -291,6 +291,7 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
   align-items: flex-end;
   pointer-events: none;
 }
+.hero__fig { height: 100%; transform-origin: 50% 100%; will-change: transform; }
 .hero__img img { height: 100%; width: auto; max-width: none; object-fit: contain; object-position: bottom; }
 .hero__location {
   position: absolute;
