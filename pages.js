@@ -24,7 +24,7 @@
     const hero = $('#hero', container);
     if (hero) {
       App.cleanups.push(fx.marquee(hero));
-      // Hero figure: only shown when a (transparent) cut-out is configured in js/data.js
+      // Hero figure: only shown when a (transparent) cut-out is configured in data.js
       const wrap = $('[data-hero-img]', hero);
       const profile = SITE.profile || {};
       const src = profile.heroImage || '';

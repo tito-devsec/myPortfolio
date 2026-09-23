@@ -2,16 +2,17 @@
    SITE DATA — everything that changes lives here.
    The admin panel (next step) will produce exactly this shape.
    Page copy (headings, paragraphs) stays in the HTML files.
+
+   All files sit in ONE folder, so a path is just the file name
+   (e.g. 'moranai-hero.png'). Avoid spaces in file names.
    ============================================================ */
 
 // Unsplash CDN helper for the sample photos (free to use, no attribution required).
-// Replace any of these with your own screenshots, e.g. 'images/work/my-project-1.jpg'.
+// Replace any of these with your own screenshots, e.g. 'my-project-1.jpg'.
 const U = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
-// Local asset helper: makes paths with spaces safe for the browser.
-const A = (path) => encodeURI(path);
 
 window.SITE = {
-  // Backend base URL once the admin/API exists, e.g. 'https://api.titodevsec.com/api'.
+  // Backend base URL once the admin/API exists, e.g. 'https://api.titodevsec.online/api'.
   // Empty = no backend: the contact form opens the visitor's email app instead.
   api: '',
 
@@ -24,9 +25,9 @@ window.SITE = {
     email: 'titomwaisengela@gmail.com',
     discord: 'titodevsec',
     availability: 'Open for freelance work',
-    avatar: 'images/profile.jpeg',
+    avatar: 'profile.jpeg',
     // Hero figure: a PNG cut-out with a TRANSPARENT background. Leave empty for the plain grey hero.
-    heroImage: '',   // set to 'images/hero.png' to show the figure again
+    heroImage: '',   // set to 'hero.png' to show the figure again
     // Rotation applied to the figure in degrees (negative = counter-clockwise) to stand it upright.
     // Set to 0 once the image file itself is upright.
     heroRotate: -24,
@@ -49,11 +50,11 @@ window.SITE = {
   // Filter buttons on the work page (only categories that exist are shown).
   workFilters: ['Design', 'Development', 'Security'],
 
-  // Sample projects — replace with real work (or manage them through the admin later).
   // Order matters: the first four appear on the home page; "next case" follows this order.
   // `cover` is used in the hover preview, cards, case hero and laptop frame.
   // `placeholder` is a local drawing shown automatically if the cover fails to load.
-  // `images` is the case-page gallery: { src, alt, caption, fallback } or { type: 'video', src, poster }.
+  // `images` is the case-page gallery: { src, alt, caption, fallback }.
+  // `video` swaps the flat frame for the scroll-animated 3D laptop.
   projects: [
     // ── Real work ──────────────────────────────────────────────────────────
     {
@@ -65,19 +66,16 @@ window.SITE = {
       year: '2026',
       location: 'Dar es Salaam, Tanzania',
       color: '#dff3ea',
-      cover: A('images/work/moranai.co.tz/Screenshot 2026-09-23 173020.png'),
-      placeholder: 'images/work/moranai.svg',
+      cover: 'moranai-hero.png',
+      placeholder: 'moranai.svg',
       // Screen recording shown inside the scroll-animated 3D laptop on the case page.
-      video: {
-        src: A('images/work/moranai.co.tz/Recording 2026-09-23 173238.mp4'),
-        poster: A('images/work/moranai.co.tz/Screenshot 2026-09-23 173020.png'),
-      },
+      video: { src: 'moranai-demo.mp4', poster: 'moranai-hero.png' },
       images: [
-        { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172507.png'), alt: 'Why businesses choose Moran AI: 5k+ businesses, 1M+ conversations, 24/7 coverage' },
-        { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172750.png'), alt: 'Customer dashboard: Moran agents (Sales, Lead Qualification, Support, Booking)' },
-        { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172533.png'), alt: 'Call to action and site footer' },
-        // Contains customer names and a phone number. Blur them first, then uncomment:
-        // { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172727.png'), alt: 'Dashboard: chat and human handover' },
+        { src: 'moranai-stats.png', alt: 'Why businesses choose Moran AI: 5k+ businesses, 1M+ conversations, 24/7 coverage' },
+        { src: 'moranai-agents.png', alt: 'Customer dashboard: Moran agents (Sales, Lead Qualification, Support, Booking)' },
+        { src: 'moranai-footer.png', alt: 'Call to action and site footer' },
+        // moranai-chat.png shows customer names and a phone number. Blur them first, then uncomment:
+        // { src: 'moranai-chat.png', alt: 'Dashboard: chat and human handover' },
       ],
       description: 'Moran AI gives businesses an intelligent sales and support agent on WhatsApp: it answers customers in Swahili and English, captures leads, takes orders and bookings and hands over to a human whenever needed. The product spans the public site and the customer dashboard: agent workspace, chat and handover, leads, campaign engine, orders, voice assistance, social media manager and a knowledge base.',
       live: 'https://moranai.co.tz',
@@ -92,12 +90,12 @@ window.SITE = {
       year: '2026',
       location: 'Dar es Salaam, Tanzania',
       color: '#0f2b21',
-      cover: A('images/work/weare.moranai/Screenshot 2026-09-23 174022.png'),
-      placeholder: 'images/work/weare-moranai.svg',
+      cover: 'weare-overview.png',
+      placeholder: 'weare-moranai.svg',
       images: [
-        { src: A('images/work/weare.moranai/Screenshot 2026-09-23 173943.png'), alt: 'Two-factor login with an authenticator code' },
-        // Contains admin names and email addresses. Blur them first, then uncomment:
-        // { src: A('images/work/weare.moranai/Screenshot 2026-09-23 174053.png'), alt: 'Users and roles: admins, owners, permissions, sign-in activity' },
+        { src: 'weare-login.png', alt: 'Two-factor login with an authenticator code' },
+        // weare-users.png shows admin names and email addresses. Blur them first, then uncomment:
+        // { src: 'weare-users.png', alt: 'Users and roles: admins, owners, permissions, sign-in activity' },
       ],
       description: 'Internal operations console for the Moran AI platform at weare.moranai.co.tz. It tracks revenue, AI cost, businesses, agents and conversations at a glance, manages WhatsApp channels, campaigns and support, and is protected by two-factor login with granular roles, permissions, sign-in activity and audit logs.',
       live: 'https://weare.moranai.co.tz',
@@ -115,11 +113,11 @@ window.SITE = {
       location: 'Tanzania',
       color: '#e4e5e7',
       cover: U('1555949963-aa79dcee981c'),
-      placeholder: 'images/work/secureauth-portal.svg',
+      placeholder: 'secureauth-portal.svg',
       images: [
-        { src: U('1498050108023-c5249f4df085'), alt: 'Application code on a laptop', fallback: 'images/work/secureauth-portal-2.svg' },
-        { src: U('1563986768609-322da13575f3', 1200), alt: 'Security lock illustration', fallback: 'images/work/secureauth-portal-3.svg' },
-        { src: U('1517694712202-14dd9538aa97'), alt: 'Developer workstation', fallback: 'images/work/secureauth-portal.svg' },
+        { src: U('1498050108023-c5249f4df085'), alt: 'Application code on a laptop', fallback: 'secureauth-portal-2.svg' },
+        { src: U('1563986768609-322da13575f3', 1200), alt: 'Security lock illustration', fallback: 'secureauth-portal-3.svg' },
+        { src: U('1517694712202-14dd9538aa97'), alt: 'Developer workstation', fallback: 'secureauth-portal.svg' },
       ],
       description: 'Enterprise authentication portal with multi-factor login, session hardening, rate limiting and full OWASP compliance. Built end to end: from the design system to the API and deployment.',
       live: '',
@@ -135,11 +133,11 @@ window.SITE = {
       location: 'Tanzania',
       color: '#8c8c8c',
       cover: U('1551288049-bebda4e38f71'),
-      placeholder: 'images/work/threatmonitor.svg',
+      placeholder: 'threatmonitor.svg',
       images: [
-        { src: U('1526374965328-7f61d4dc18c5'), alt: 'Streams of code on a dark screen', fallback: 'images/work/threatmonitor-2.svg' },
-        { src: U('1460925895917-afdab827c52f', 1200), alt: 'Analytics charts on a laptop', fallback: 'images/work/threatmonitor-3.svg' },
-        { src: U('1544197150-b99a580bb7a8'), alt: 'Server room', fallback: 'images/work/threatmonitor.svg' },
+        { src: U('1526374965328-7f61d4dc18c5'), alt: 'Streams of code on a dark screen', fallback: 'threatmonitor-2.svg' },
+        { src: U('1460925895917-afdab827c52f', 1200), alt: 'Analytics charts on a laptop', fallback: 'threatmonitor-3.svg' },
+        { src: U('1544197150-b99a580bb7a8'), alt: 'Server room', fallback: 'threatmonitor.svg' },
       ],
       description: 'Real-time cybersecurity monitoring dashboard that aggregates logs, detects anomalies and pushes automated alerts to the response team.',
       live: '',
@@ -155,11 +153,11 @@ window.SITE = {
       location: 'Remote',
       color: '#c3cbc7',
       cover: U('1461749280684-dccba630e2f6'),
-      placeholder: 'images/work/devsecops-pipeline.svg',
+      placeholder: 'devsecops-pipeline.svg',
       images: [
-        { src: U('1544197150-b99a580bb7a8'), alt: 'Data centre racks', fallback: 'images/work/devsecops-pipeline-2.svg' },
-        { src: U('1555066931-4365d14bab8c', 1200), alt: 'Source code on a monitor', fallback: 'images/work/devsecops-pipeline-3.svg' },
-        { src: U('1510915228340-29c85a43dcfe'), alt: 'Laptop with terminal and coffee', fallback: 'images/work/devsecops-pipeline.svg' },
+        { src: U('1544197150-b99a580bb7a8'), alt: 'Data centre racks', fallback: 'devsecops-pipeline-2.svg' },
+        { src: U('1555066931-4365d14bab8c', 1200), alt: 'Source code on a monitor', fallback: 'devsecops-pipeline-3.svg' },
+        { src: U('1510915228340-29c85a43dcfe'), alt: 'Laptop with terminal and coffee', fallback: 'devsecops-pipeline.svg' },
       ],
       description: 'Automated CI/CD pipeline with integrated security scanning, dependency auditing and compliance reporting, so every release ships secure by default.',
       live: '',
@@ -175,11 +173,11 @@ window.SITE = {
       location: 'Tanzania',
       color: '#706d63',
       cover: U('1550751827-4bd374c3f58b'),
-      placeholder: 'images/work/pentest-framework.svg',
+      placeholder: 'pentest-framework.svg',
       images: [
-        { src: U('1555066931-4365d14bab8c'), alt: 'Code on screen', fallback: 'images/work/pentest-framework-2.svg' },
-        { src: U('1518770660439-4636190af475', 1200), alt: 'Circuit board close-up', fallback: 'images/work/pentest-framework-3.svg' },
-        { src: U('1526374965328-7f61d4dc18c5'), alt: 'Code streams', fallback: 'images/work/pentest-framework.svg' },
+        { src: U('1555066931-4365d14bab8c'), alt: 'Code on screen', fallback: 'pentest-framework-2.svg' },
+        { src: U('1518770660439-4636190af475', 1200), alt: 'Circuit board close-up', fallback: 'pentest-framework-3.svg' },
+        { src: U('1526374965328-7f61d4dc18c5'), alt: 'Code streams', fallback: 'pentest-framework.svg' },
       ],
       description: 'Custom penetration-testing toolkit that chains reconnaissance, scanning and reporting into one repeatable workflow for security assessments.',
       live: '',
@@ -195,11 +193,11 @@ window.SITE = {
       location: 'Dar es Salaam',
       color: '#efe8d3',
       cover: U('1522202176988-66273c2fd55f'),
-      placeholder: 'images/work/campus-connect.svg',
+      placeholder: 'campus-connect.svg',
       images: [
-        { src: U('1523240795612-9a054b0db644'), alt: 'Students studying together', fallback: 'images/work/campus-connect-2.svg' },
-        { src: U('1504384308090-c894fdcc538d', 1200), alt: 'Team working on laptops', fallback: 'images/work/campus-connect-3.svg' },
-        { src: U('1498050108023-c5249f4df085'), alt: 'Building the app', fallback: 'images/work/campus-connect.svg' },
+        { src: U('1523240795612-9a054b0db644'), alt: 'Students studying together', fallback: 'campus-connect-2.svg' },
+        { src: U('1504384308090-c894fdcc538d', 1200), alt: 'Team working on laptops', fallback: 'campus-connect-3.svg' },
+        { src: U('1498050108023-c5249f4df085'), alt: 'Building the app', fallback: 'campus-connect.svg' },
       ],
       description: 'University platform connecting students, clubs and events at UDSM, designed for quick discovery and built for thousands of concurrent users.',
       live: '',
@@ -215,11 +213,11 @@ window.SITE = {
       location: 'Remote',
       color: '#d5dbe0',
       cover: U('1518546305927-5a555bb7020d'),
-      placeholder: 'images/work/cryptovault.svg',
+      placeholder: 'cryptovault.svg',
       images: [
-        { src: U('1556742049-0cfed4f6a45d'), alt: 'Online payment with a card and laptop', fallback: 'images/work/cryptovault-2.svg' },
-        { src: U('1518770660439-4636190af475', 1200), alt: 'Hardware close-up', fallback: 'images/work/cryptovault-3.svg' },
-        { src: U('1551288049-bebda4e38f71'), alt: 'Portfolio dashboard', fallback: 'images/work/cryptovault.svg' },
+        { src: U('1556742049-0cfed4f6a45d'), alt: 'Online payment with a card and laptop', fallback: 'cryptovault-2.svg' },
+        { src: U('1518770660439-4636190af475', 1200), alt: 'Hardware close-up', fallback: 'cryptovault-3.svg' },
+        { src: U('1551288049-bebda4e38f71'), alt: 'Portfolio dashboard', fallback: 'cryptovault.svg' },
       ],
       description: 'Secure digital-asset management app with multi-factor authentication, cold-storage integration and audited transaction flows.',
       live: '',

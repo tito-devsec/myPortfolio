@@ -218,7 +218,7 @@
     // WebGL upgrade
     const canWebGL = !!window.WebGLRenderingContext && location.protocol !== 'file:';
     if (!canWebGL) return;
-    const url = new URL('js/laptop3d.js', document.baseURI).href;
+    const url = new URL('laptop3d.js', document.baseURI).href;
     import(url)
       .then((mod) => mod.mountLaptop({
         container: scene, video, poster: video ? video.getAttribute('poster') : '',

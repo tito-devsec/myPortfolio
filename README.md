@@ -38,17 +38,17 @@ Then open http://localhost:3000 (serve) or http://localhost:8080 (python).
 | `work-detail.html?p=<slug>` | Case page rendered from the project data |
 | `about.html` | About, services, tech stack |
 | `contact.html` | Contact form and details |
-| `css/main.css` | All styles |
-| `js/data.js` | **All content that changes**: profile, socials, projects, services, stack |
-| `js/app.js` | Core: smooth scroll, preloader, transitions, header, menu, magnetic, reveals, preview modal |
-| `js/pages.js` | Per-page logic (home, work, work-detail, about, contact) and start-up |
-| `images/work/*.svg` | Drawn fallbacks for the sample projects. The sample covers and galleries are theme-matched photos hotlinked from Unsplash; each falls back to its SVG if the link fails. Replace both with real screenshots |
+| `main.css` | All styles |
+| `data.js` | **All content that changes**: profile, socials, projects, services, stack |
+| `app.js` | Core: smooth scroll, preloader, transitions, header, menu, magnetic, reveals, preview modal |
+| `pages.js` | Per-page logic (home, work, work-detail, about, contact) and start-up |
+| `*.svg` | Drawn fallbacks for the sample projects. The sample covers and galleries are theme-matched photos hotlinked from Unsplash; each falls back to its SVG if the link fails. Replace both with real screenshots |
 | `admin/` | Old admin panel, untouched for now. Will be rebuilt against the new data model |
 | `_old-site/` | The previous version of the site, kept for reference. Safe to delete |
 
 ## Editing content
 
-Everything dynamic lives in `js/data.js`:
+Everything dynamic lives in `data.js`:
 
 - `profile`: name, role lines, location, email, timezone, availability.
 - `socials`: label + URL. Leave a URL empty to render the label without a link.
@@ -60,32 +60,32 @@ Page copy (headings, paragraphs) is in the HTML files.
 
 ## Adding screenshots and a video to a real project (Moranai)
 
-1. Put the files in the repo, e.g. `images/work/moranai-1.jpg`, `images/work/moranai-2.jpg`, `videos/moranai.mp4` (mp4 or webm, muted playback, keep it under ~10 MB).
-2. In `js/data.js`, set the project's `cover` to the best screenshot and fill `images`:
+1. Put the files in the repo, e.g. `moranai-1.jpg`, `moranai-2.jpg`, `moranai-demo.mp4` (mp4 or webm, muted playback, keep it under ~10 MB).
+2. In `data.js`, set the project's `cover` to the best screenshot and fill `images`:
 
 ```js
-cover: 'images/work/moranai-1.jpg',
+cover: 'moranai-1.jpg',
 images: [
-  { type: 'video', src: 'videos/moranai.mp4', poster: 'images/work/moranai-1.jpg' },
-  { src: 'images/work/moranai-2.jpg', alt: 'Home page' },
-  { src: 'images/work/moranai-3.jpg', alt: 'Services page' },
+  { type: 'video', src: 'moranai-demo.mp4', poster: 'moranai-1.jpg' },
+  { src: 'moranai-2.jpg', alt: 'Home page' },
+  { src: 'moranai-3.jpg', alt: 'Services page' },
 ],
 ```
 
 3. Fill in `tech`, `year` and `description`, then commit and push.
 
-A project can also have a `video: { src, poster }` field. When it is set, the case page replaces the static laptop frame with a 3D laptop that lifts, turns and opens as the visitor scrolls, playing the video on its screen (muted, only while on screen). The laptop is rendered in WebGL with Three.js (`js/laptop3d.js`, loaded on demand from the CDN), modelled on the 13" MacBook Air M4 (real proportions in centimetres, notch, full keyboard, ports) with aluminium materials, studio reflections, a soft shadow and mouse parallax. Pick the colour with `laptop.finish` in `js/data.js` (silver, starlight, skyblue, midnight, spacegrey). The lid carries no logo on purpose (Apple's trademark); on browsers without WebGL, or when opened from a `file://` URL, a simpler CSS laptop takes its place automatically. Keep recordings short and compressed (a few MB): they are served straight from the repo.
+A project can also have a `video: { src, poster }` field. When it is set, the case page replaces the static laptop frame with a 3D laptop that lifts, turns and opens as the visitor scrolls, playing the video on its screen (muted, only while on screen). The laptop is rendered in WebGL with Three.js (`laptop3d.js`, loaded on demand from the CDN), modelled on the 13" MacBook Air M4 (real proportions in centimetres, notch, full keyboard, ports) with aluminium materials, studio reflections, a soft shadow and mouse parallax. Pick the colour with `laptop.finish` in `data.js` (silver, starlight, skyblue, midnight, spacegrey). The lid carries no logo on purpose (Apple's trademark); on browsers without WebGL, or when opened from a `file://` URL, a simpler CSS laptop takes its place automatically. Keep recordings short and compressed (a few MB): they are served straight from the repo.
 
-Two Moran screenshots are listed but commented out in `js/data.js` because they show customer names, a phone number and admin email addresses. Blur those details, then remove the `//` to publish them.
+Two Moran screenshots are listed but commented out in `data.js` because they show customer names, a phone number and admin email addresses. Blur those details, then remove the `//` to publish them.
 
 ## Images
 
-- The hero figure is set by `profile.heroImage` in `js/data.js`. It must be a PNG cut-out with a transparent background (remove.bg does this in one click). `images/tito-hero.png` is a stock placeholder with a solid black background, so the setting is empty and the hero stays plain grey until you point it at your own cut-out.
-- `images/profile.jpeg` is used for the about page photo, the avatar in the contact call-to-action and the contact page.
+- The hero figure is set by `profile.heroImage` in `data.js`. It must be a PNG cut-out with a transparent background (remove.bg does this in one click). `hero.png` is your cut-out, but its background is not transparent, so the setting is empty and the hero stays plain grey until you replace it.
+- `profile.jpeg` is used for the about page photo, the avatar in the contact call-to-action and the contact page.
 
 ## Fonts
 
-The original uses Neue Montreal (commercial). This build uses Inter from Google Fonts. If you buy Neue Montreal, add the `@font-face` rules to `css/main.css` and put `'Neue Montreal'` first in the `--font` variable.
+The original uses Neue Montreal (commercial). This build uses Inter from Google Fonts. If you buy Neue Montreal, add the `@font-face` rules to `main.css` and put `'Neue Montreal'` first in the `--font` variable.
 
 ## URLs
 
@@ -93,12 +93,15 @@ The public URLs have no `.html`: `/`, `/work`, `/about`, `/contact` and `/work/<
 
 ## Deploying (titodevsec.online on Hostinger)
 
-The site is static: copy the files into `public_html` and it works.
+The site is deliberately **flat**: every file lives in one folder, with no subdirectories. Web file managers can only upload loose files, not folders, so this lets you select everything and upload it in one go.
 
-1. In the file manager, delete everything currently in `public_html` (old site).
-2. Upload the zip built by the PowerShell command in the notes (everything except `_old-site/`, `.claude/`, `.git/`, `admin/`), extract it in `public_html`, delete the zip.
-3. `index.html`, `.htaccess`, `css/`, `js/`, `images/` must sit directly in `public_html`.
+1. In the file manager, delete everything currently in `public_html`.
+2. Open this project folder, select all files **except** `_old-site`, `admin`, `.git`, `.claude`, `README.md`, `serve.json`, `.gitattributes` and `.gitignore`, and upload them into `public_html`.
+3. Make sure `.htaccess` came across; turn on "show hidden files" to check. Without it the clean URLs return 404.
 4. Make sure SSL is issued for the domain; `.htaccess` redirects to HTTPS.
+5. Purge the Hostinger CDN cache so the new files are served straight away.
+
+Keep it flat when adding assets later: new screenshots go beside the HTML, not in a subfolder.
 
 Hostinger runs LiteSpeed, which honours `.htaccess`. On a plain Nginx server the equivalent is:
 
@@ -119,4 +122,4 @@ Issue an SSL certificate for the domain (Let's Encrypt in the panel) before goin
 
 ## Next step: admin
 
-The contact form posts to `SITE.api + '/contact'` when `SITE.api` is set in `js/data.js`; with no API it falls back to opening your email client. The project/data shape in `js/data.js` is the shape the admin API should return.
+The contact form posts to `SITE.api + '/contact'` when `SITE.api` is set in `data.js`; with no API it falls back to opening your email client. The project/data shape in `data.js` is the shape the admin API should return.
