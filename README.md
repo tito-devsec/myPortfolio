@@ -42,7 +42,7 @@ Then open http://localhost:3000 (serve) or http://localhost:8080 (python).
 | `js/data.js` | **All content that changes**: profile, socials, projects, services, stack |
 | `js/app.js` | Core: smooth scroll, preloader, transitions, header, menu, magnetic, reveals, preview modal |
 | `js/pages.js` | Per-page logic (home, work, work-detail, about, contact) and start-up |
-| `images/work/*.svg` | Placeholder project covers. Replace with real screenshots (any image format) |
+| `images/work/*.svg` | Drawn fallbacks for the sample projects. The sample covers and galleries are theme-matched photos hotlinked from Unsplash; each falls back to its SVG if the link fails. Replace both with real screenshots |
 | `admin/` | Old admin panel, untouched for now. Will be rebuilt against the new data model |
 | `_old-site/` | The previous version of the site, kept for reference. Safe to delete |
 
@@ -57,6 +57,22 @@ Everything dynamic lives in `js/data.js`:
 - `services` and `stack`: the about page grids.
 
 Page copy (headings, paragraphs) is in the HTML files.
+
+## Adding screenshots and a video to a real project (Moranai)
+
+1. Put the files in the repo, e.g. `images/work/moranai-1.jpg`, `images/work/moranai-2.jpg`, `videos/moranai.mp4` (mp4 or webm, muted playback, keep it under ~10 MB).
+2. In `js/data.js`, set the project's `cover` to the best screenshot and fill `images`:
+
+```js
+cover: 'images/work/moranai-1.jpg',
+images: [
+  { type: 'video', src: 'videos/moranai.mp4', poster: 'images/work/moranai-1.jpg' },
+  { src: 'images/work/moranai-2.jpg', alt: 'Home page' },
+  { src: 'images/work/moranai-3.jpg', alt: 'Services page' },
+],
+```
+
+3. Fill in `tech`, `year` and `description`, then commit and push.
 
 ## Images
 

@@ -229,7 +229,7 @@
   App.modal = {
     setProjects(projects) {
       if (!modal.slider) return;
-      modal.slider.innerHTML = projects.map((p) => `<div class="modal__item" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt="" /></div>`).join('');
+      modal.slider.innerHTML = projects.map((p) => `<div class="modal__item" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt=""${p.placeholder ? ` data-fallback="${esc(p.placeholder)}"` : ''} /></div>`).join('');
       modal.slider.style.top = '0%';
     },
     show(i) {
@@ -298,7 +298,7 @@
     projectRow(p, i) {
       // The image only shows on small screens, where the row turns into a card (no hover preview on touch).
       return `<a class="project" href="${R.caseUrl(p.slug)}" data-index="${i}">
-        <div class="project__img" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt="" loading="lazy" /></div>
+        <div class="project__img" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt="" loading="lazy"${p.placeholder ? ` data-fallback="${esc(p.placeholder)}"` : ''} /></div>
         <div class="project__text"><h2>${esc(p.title)}</h2><p>${esc(p.services)}</p></div>
       </a>`;
     },
@@ -307,7 +307,7 @@
     },
     workCard(p) {
       return `<a class="work-card" href="${R.caseUrl(p.slug)}">
-        <div class="work-card__img" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt="${esc(p.title)}" loading="lazy" /></div>
+        <div class="work-card__img" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt="${esc(p.title)}" loading="lazy"${p.placeholder ? ` data-fallback="${esc(p.placeholder)}"` : ''} /></div>
         <h2>${esc(p.title)}</h2>
         <div class="work-card__meta"><span>${esc(p.services)}</span><span>${esc(p.year)}</span></div>
       </a>`;
@@ -343,7 +343,7 @@
       const isVideo = it.type === 'video' || /\.(mp4|webm|mov)(\?|$)/i.test(it.src || '');
       const media = isVideo
         ? `<video src="${esc(it.src)}"${it.poster ? ` poster="${esc(it.poster)}"` : ''} autoplay muted loop playsinline preload="metadata"></video>`
-        : `<img src="${esc(it.src)}" alt="${esc(it.alt || '')}" loading="lazy" />`;
+        : `<img src="${esc(it.src)}" alt="${esc(it.alt || '')}" loading="lazy"${it.fallback ? ` data-fallback="${esc(it.fallback)}"` : ''} />`;
       return `<figure class="case-fig case-fig--${size}" data-reveal="fade">
         <div class="case-fig__media"${isVideo ? '' : ' data-parallax'}>${media}</div>
         ${it.caption ? `<figcaption>${esc(it.caption)}</figcaption>` : ''}
@@ -376,19 +376,19 @@
         </div>
         ${action}
       </section>
-      <section class="case-hero"><div class="case-hero__img" data-parallax><img src="${esc(p.cover)}" alt="${esc(p.title)}" /></div></section>
+      <section class="case-hero"><div class="case-hero__img" data-parallax><img src="${esc(p.cover)}" alt="${esc(p.title)}"${p.placeholder ? ` data-fallback="${esc(p.placeholder)}"` : ''} /></div></section>
       <section class="case-text">
         <p class="label" data-reveal="fade">About the project</p>
         <div data-reveal="fade"><p>${esc(p.description)}</p>${tech.length ? `<ul class="case-tags">${tech.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}</div>
       </section>
-      <section class="case-mock" style="background:${esc(p.color)}"><div class="case-mock__frame" data-reveal="fade"><img src="${esc(p.cover)}" alt="" loading="lazy" /></div></section>
+      <section class="case-mock" style="background:${esc(p.color)}"><div class="case-mock__frame" data-reveal="fade"><img src="${esc(p.cover)}" alt="" loading="lazy"${p.placeholder ? ` data-fallback="${esc(p.placeholder)}"` : ''} /></div></section>
       ${R.caseGallery(p)}
       <section class="next-case" style="--curve-from:#ffffff">
         <div class="rounded-wrap"><div class="rounded"></div></div>
         <p class="next-case__label">Next case</p>
         <a class="next-case__link" href="${R.caseUrl(next.slug)}">
           <h2 class="next-case__title">${esc(next.title)}</h2>
-          <div class="next-case__img" data-parallax><img src="${esc(next.cover)}" alt="${esc(next.title)}" loading="lazy" /></div>
+          <div class="next-case__img" data-parallax><img src="${esc(next.cover)}" alt="${esc(next.title)}" loading="lazy"${next.placeholder ? ` data-fallback="${esc(next.placeholder)}"` : ''} /></div>
         </a>
         <div class="next-case__line"><a class="btn-circle btn-circle--blue magnetic" href="${R.caseUrl(next.slug)}"><span class="magnetic__inner">Next case</span><span class="btn__fill"></span></a></div>
         <div class="next-case__all"><a class="btn-round btn-round--ghost magnetic" href="work.html"><span class="magnetic__inner">All work<sup>${total}</sup></span><span class="btn__fill"></span></a></div>
@@ -511,6 +511,14 @@
     if (a.dataset.ns === App.current.ns) { e.preventDefault(); closePanel(); }
   }));
   document.addEventListener('click', (e) => { const a = e.target.closest('a.is-empty'); if (a) e.preventDefault(); });
+  // Any image with data-fallback swaps to its local fallback if the remote file fails to load.
+  document.addEventListener('error', (e) => {
+    const img = e.target;
+    if (img && img.tagName === 'IMG' && img.dataset.fallback && !img.dataset.fellBack) {
+      img.dataset.fellBack = '1';
+      img.src = img.dataset.fallback;
+    }
+  }, true);
 
   function setHeaderTheme(theme) { if (header) header.dataset.theme = theme || 'dark'; }
   function setActive(ns) {
