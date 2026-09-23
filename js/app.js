@@ -184,25 +184,51 @@
   };
 
   // 3D laptop: the device lifts and tilts toward the viewer while the lid opens, driven by scroll.
+  // A WebGL (Three.js) laptop is loaded on demand; the CSS laptop in the markup is the fallback.
   // The video plays only while the section is on screen.
   App.fx.device = (scene) => {
     const laptop = $('.laptop', scene);
     const lid = $('.laptop__lid', scene);
     const video = $('video', scene);
     if (!laptop || !lid) return;
+    const state = { p: 0, destroyed: false, rig: null };
+    gsap.to(state, { p: 1, ease: 'none', scrollTrigger: { trigger: scene, start: 'top 90%', end: 'center 42%', scrub: 0.8 } });
+
+    // CSS fallback rig
     const small = window.innerWidth < 768;
     gsap.set(laptop, { rotationX: small ? 40 : 55, y: small ? 40 : 120, scale: small ? 0.92 : 0.85, transformOrigin: '50% 100%' });
     gsap.set(lid, { rotationX: -75 });
-    const tl = gsap.timeline({ scrollTrigger: { trigger: scene, start: 'top 90%', end: 'center 45%', scrub: 0.6 } });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: scene, start: 'top 90%', end: 'center 42%', scrub: 0.6 } });
     tl.to(laptop, { rotationX: small ? 8 : 12, y: 0, scale: 1, ease: 'none' }, 0)
       .to(lid, { rotationX: 0, ease: 'none' }, 0);
-    if (video) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((en) => { if (en.isIntersecting) { video.play().catch(() => {}); } else { video.pause(); } });
-      }, { threshold: 0.2 });
-      io.observe(scene);
-      App.cleanups.push(() => io.disconnect());
-    }
+
+    // Visibility: play/pause the video and run the WebGL loop only while on screen
+    let visible = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        visible = en.isIntersecting;
+        if (video) { if (visible) video.play().catch(() => {}); else video.pause(); }
+        if (state.rig) state.rig.setActive(visible);
+      });
+    }, { threshold: 0.15 });
+    io.observe(scene);
+    App.cleanups.push(() => { state.destroyed = true; io.disconnect(); if (state.rig) state.rig.destroy(); });
+
+    // WebGL upgrade
+    const canWebGL = !!window.WebGLRenderingContext && location.protocol !== 'file:';
+    if (!canWebGL) return;
+    const url = new URL('js/laptop3d.js', document.baseURI).href;
+    import(url)
+      .then((mod) => mod.mountLaptop({ container: scene, video, poster: video ? video.getAttribute('poster') : '', getProgress: () => state.p }))
+      .then((rig) => {
+        if (state.destroyed) { rig.destroy(); return; }
+        state.rig = rig;
+        tl.scrollTrigger && tl.scrollTrigger.kill();
+        tl.kill();
+        laptop.classList.add('is-hidden');
+        rig.setActive(visible);
+      })
+      .catch((err) => { console.warn('3D laptop unavailable, using the CSS fallback.', err); });
   };
 
   // Hero marquee: endless loop whose speed and direction follow the scroll velocity.

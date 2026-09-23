@@ -74,7 +74,7 @@ images: [
 
 3. Fill in `tech`, `year` and `description`, then commit and push.
 
-A project can also have a `video: { src, poster }` field. When it is set, the case page replaces the static laptop frame with a 3D laptop that lifts, tilts and opens as the visitor scrolls, playing the video on its screen (muted, only while on screen). Keep recordings short and compressed (a few MB): they are served straight from the repo.
+A project can also have a `video: { src, poster }` field. When it is set, the case page replaces the static laptop frame with a 3D laptop that lifts, turns and opens as the visitor scrolls, playing the video on its screen (muted, only while on screen). The laptop is rendered in WebGL with Three.js (`js/laptop3d.js`, loaded on demand from the CDN) with aluminium materials, studio reflections, a soft shadow and mouse parallax; on browsers without WebGL, or when opened from a `file://` URL, a simpler CSS laptop takes its place automatically. Keep recordings short and compressed (a few MB): they are served straight from the repo.
 
 Two Moran screenshots are listed but commented out in `js/data.js` because they show customer names, a phone number and admin email addresses. Blur those details, then remove the `//` to publish them.
 

@@ -470,8 +470,11 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
 .case-mock { padding: clamp(60px, 10vw, 140px) var(--pad-o); }
 /* 3D laptop (case pages with a video) */
 .case-device { padding: clamp(80px, 12vw, 160px) var(--pad-o) clamp(140px, 18vw, 260px); overflow: hidden; }
-.device-scene { max-width: 960px; margin: 0 auto; perspective: 1600px; perspective-origin: 50% 30%; }
-.laptop { position: relative; transform-style: preserve-3d; will-change: transform; }
+.device-scene { position: relative; max-width: 1040px; margin: 0 auto; aspect-ratio: 16 / 11; perspective: 1600px; perspective-origin: 50% 30%; }
+.laptop { position: absolute; left: 0; right: 0; top: 2%; transform-style: preserve-3d; will-change: transform; }
+.laptop.is-hidden { visibility: hidden; }
+.laptop3d { position: absolute; inset: 0; display: block; width: 100% !important; height: 100% !important; opacity: 0; transition: opacity 0.8s ease; }
+.laptop3d.is-on { opacity: 1; }
 .laptop__lid {
   position: relative;
   transform-origin: 50% 100%;
@@ -768,8 +771,8 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
   .case-meta { margin-top: 60px; }
   .case-gallery { grid-template-columns: 1fr; }
   .case-fig--half .case-fig__media { aspect-ratio: 4 / 3; }
-  .case-device { padding: 60px var(--pad-x) 120px; }
-  .device-scene { perspective: 1000px; }
+  .case-device { padding: 60px var(--pad-x) 80px; }
+  .device-scene { perspective: 1000px; aspect-ratio: 16 / 13; }
   .laptop__lid { padding: 10px 10px 16px; border-radius: 14px 14px 6px 6px; }
   .laptop__screen { border-radius: 6px; }
   .laptop__base { height: 34vw; border-radius: 0 0 16px 16px; }
