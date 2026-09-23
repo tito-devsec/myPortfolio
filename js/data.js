@@ -51,6 +51,13 @@ window.SITE = {
       location: 'Tanzania',
       color: '#e4e5e7',
       cover: 'images/work/secureauth-portal.svg',
+      // Gallery: images or videos, in order. Items: { src, alt, caption } or { type: 'video', src, poster }.
+      // The first item is shown full width, the next two side by side, and so on.
+      images: [
+        { src: 'images/work/secureauth-portal-2.svg', alt: 'Admin dashboard' },
+        { src: 'images/work/secureauth-portal-3.svg', alt: 'Mobile sign-in' },
+        { src: 'images/work/secureauth-portal.svg', alt: 'Landing page' },
+      ],
       description: 'Enterprise authentication portal with multi-factor login, session hardening, rate limiting and full OWASP compliance. Built end to end: from the design system to the API and deployment.',
       live: '',
       github: '',
@@ -65,6 +72,11 @@ window.SITE = {
       location: 'Tanzania',
       color: '#8c8c8c',
       cover: 'images/work/threatmonitor.svg',
+      images: [
+        { src: 'images/work/threatmonitor-2.svg', alt: 'Live alerts dashboard' },
+        { src: 'images/work/threatmonitor-3.svg', alt: 'Mobile alerts' },
+        { src: 'images/work/threatmonitor.svg', alt: 'Overview' },
+      ],
       description: 'Real-time cybersecurity monitoring dashboard that aggregates logs, detects anomalies and pushes automated alerts to the response team.',
       live: '',
       github: '',
@@ -79,6 +91,11 @@ window.SITE = {
       location: 'Remote',
       color: '#c3cbc7',
       cover: 'images/work/devsecops-pipeline.svg',
+      images: [
+        { src: 'images/work/devsecops-pipeline-2.svg', alt: 'Pipeline runs' },
+        { src: 'images/work/devsecops-pipeline-3.svg', alt: 'Deployments on mobile' },
+        { src: 'images/work/devsecops-pipeline.svg', alt: 'Pipeline stages' },
+      ],
       description: 'Automated CI/CD pipeline with integrated security scanning, dependency auditing and compliance reporting, so every release ships secure by default.',
       live: '',
       github: '',
@@ -93,6 +110,11 @@ window.SITE = {
       location: 'Tanzania',
       color: '#706d63',
       cover: 'images/work/pentest-framework.svg',
+      images: [
+        { src: 'images/work/pentest-framework-2.svg', alt: 'Report generation' },
+        { src: 'images/work/pentest-framework-3.svg', alt: 'Scan results on mobile' },
+        { src: 'images/work/pentest-framework.svg', alt: 'Terminal run' },
+      ],
       description: 'Custom penetration-testing toolkit that chains reconnaissance, scanning and reporting into one repeatable workflow for security assessments.',
       live: '',
       github: '',
@@ -107,6 +129,11 @@ window.SITE = {
       location: 'Dar es Salaam',
       color: '#efe8d3',
       cover: 'images/work/campus-connect.svg',
+      images: [
+        { src: 'images/work/campus-connect-2.svg', alt: 'Events overview' },
+        { src: 'images/work/campus-connect-3.svg', alt: 'Clubs on mobile' },
+        { src: 'images/work/campus-connect.svg', alt: 'Home' },
+      ],
       description: 'University platform connecting students, clubs and events at UDSM, designed for quick discovery and built for thousands of concurrent users.',
       live: '',
       github: '',
@@ -121,6 +148,11 @@ window.SITE = {
       location: 'Remote',
       color: '#d5dbe0',
       cover: 'images/work/cryptovault.svg',
+      images: [
+        { src: 'images/work/cryptovault-2.svg', alt: 'Portfolio dashboard' },
+        { src: 'images/work/cryptovault-3.svg', alt: 'Wallet on mobile' },
+        { src: 'images/work/cryptovault.svg', alt: 'Overview' },
+      ],
       description: 'Secure digital-asset management app with multi-factor authentication, cold-storage integration and audited transaction flows.',
       live: '',
       github: '',

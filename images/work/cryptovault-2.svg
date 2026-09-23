@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#0b1220"/>
+  <rect width="280" height="1000" fill="#080e19"/>
+  <rect x="40" y="60" width="120" height="14" rx="7" fill="#38bdf8"/>
+  <rect x="40" y="150" width="200" height="12" rx="6" fill="#22314a"/><rect x="40" y="200" width="160" height="12" rx="6" fill="#22314a"/><rect x="40" y="250" width="180" height="12" rx="6" fill="#22314a"/><rect x="40" y="300" width="140" height="12" rx="6" fill="#22314a"/>
+  <text x="340" y="120" font-family="Inter, Helvetica, Arial, sans-serif" font-size="44" font-weight="500" fill="#ffffff">CryptoVault</text>
+  <text x="340" y="165" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8fa3b8">Portfolio · 24h</text>
+  <rect x="340" y="220" width="380" height="180" rx="16" fill="#111a2b"/><rect x="750" y="220" width="380" height="180" rx="16" fill="#111a2b"/><rect x="1160" y="220" width="380" height="180" rx="16" fill="#111a2b"/>
+  <text x="370" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#ffffff">12.48 BTC</text>
+  <text x="780" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#38bdf8">+4.2%</text>
+  <text x="1190" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#ffffff">Cold</text>
+  <rect x="340" y="440" width="1200" height="480" rx="16" fill="#111a2b"/>
+  <polyline points="380,840 520,760 660,800 800,660 940,700 1080,560 1220,600 1360,500 1500,540" fill="none" stroke="#38bdf8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

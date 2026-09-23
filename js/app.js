@@ -183,25 +183,30 @@
     });
   };
 
-  // Hero marquee: endless loop, direction follows the scroll direction.
+  // Hero marquee: endless loop whose speed and direction follow the scroll velocity.
   App.fx.marquee = (hero) => {
     const slider = $('.hero__slider', hero);
     if (!slider) return () => {};
     const [a, b] = slider.children;
-    let x = 0, dir = -1, raf = 0;
+    const BASE = 0.06;   // idle speed (% of one copy per frame)
+    const MAX = 0.8;     // cap while scrolling fast
+    let x = 0, dir = -1, speed = BASE, raf = 0, lastY = window.scrollY;
     gsap.to(slider, {
       x: -400, ease: 'none',
-      scrollTrigger: {
-        trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.25,
-        onUpdate: (self) => { dir = self.direction === 1 ? -1 : 1; },
-      },
+      scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 0.25 },
     });
     const tick = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;           // px scrolled since the last frame = velocity
+      lastY = y;
+      if (Math.abs(delta) > 0.5) dir = delta > 0 ? -1 : 1;             // down: run left, up: run right
+      const target = Math.min(MAX, BASE + Math.abs(delta) * 0.012);   // faster scroll, faster marquee
+      speed += (target - speed) * (target > speed ? 0.3 : 0.05);      // quick to accelerate, slow to settle
       if (x <= -100) x = 0;
       if (x > 0) x = -100;
       gsap.set(a, { xPercent: x });
       if (b) gsap.set(b, { xPercent: x });
-      x += 0.06 * dir;
+      x += speed * dir;
       raf = requestAnimationFrame(tick);
     };
     tick();
@@ -326,6 +331,30 @@
         <div class="contact__block" data-reveal="fade"><p class="label">Location</p><p>${esc(p.city)}</p><p>${esc(p.availability)}</p></div>
         <div class="contact__block" data-reveal="fade"><p class="label">Socials</p><div class="contact__socials">${R.socials('contact__social')}</div></div>`;
     },
+    // One gallery item: { src, alt?, caption?, type?: 'image' | 'video', poster? }
+    caseFigure(it, size) {
+      const isVideo = it.type === 'video' || /\.(mp4|webm|mov)(\?|$)/i.test(it.src || '');
+      const media = isVideo
+        ? `<video src="${esc(it.src)}"${it.poster ? ` poster="${esc(it.poster)}"` : ''} autoplay muted loop playsinline preload="metadata"></video>`
+        : `<img src="${esc(it.src)}" alt="${esc(it.alt || '')}" loading="lazy" />`;
+      return `<figure class="case-fig case-fig--${size}" data-reveal="fade">
+        <div class="case-fig__media"${isVideo ? '' : ' data-parallax'}>${media}</div>
+        ${it.caption ? `<figcaption>${esc(it.caption)}</figcaption>` : ''}
+      </figure>`;
+    },
+    // Gallery layout: one full-width item, then a pair side by side, and so on.
+    caseGallery(p) {
+      const items = (p.images || []).filter((it) => it && it.src);
+      if (!items.length) return '';
+      let html = '', i = 0, full = true;
+      while (i < items.length) {
+        const take = full ? 1 : Math.min(2, items.length - i);
+        html += items.slice(i, i + take).map((it) => R.caseFigure(it, take === 1 ? 'full' : 'half')).join('');
+        i += take;
+        full = !full;
+      }
+      return `<section class="case-gallery">${html}</section>`;
+    },
     caseHTML(p, next, total) {
       const link = p.live || p.github;
       const action = link ? `<div class="case-actions"><a class="btn-circle btn-circle--blue magnetic" href="${esc(link)}" target="_blank" rel="noopener"><span class="magnetic__inner">${p.live ? 'Live site' : 'GitHub'} ${ICON.arrowUpRight}</span><span class="btn__fill"></span></a></div>` : '';
@@ -341,11 +370,12 @@
         ${action}
       </section>
       <section class="case-hero"><div class="case-hero__img" data-parallax><img src="${esc(p.cover)}" alt="${esc(p.title)}" /></div></section>
-      <section class="case-mock" style="background:${esc(p.color)}"><div class="case-mock__frame" data-reveal="fade"><img src="${esc(p.cover)}" alt="" loading="lazy" /></div></section>
       <section class="case-text">
         <p class="label" data-reveal="fade">About the project</p>
         <div data-reveal="fade"><p>${esc(p.description)}</p>${tech.length ? `<ul class="case-tags">${tech.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}</div>
       </section>
+      <section class="case-mock" style="background:${esc(p.color)}"><div class="case-mock__frame" data-reveal="fade"><img src="${esc(p.cover)}" alt="" loading="lazy" /></div></section>
+      ${R.caseGallery(p)}
       <section class="next-case" style="--curve-from:#ffffff">
         <div class="rounded-wrap"><div class="rounded"></div></div>
         <p class="next-case__label">Next case</p>

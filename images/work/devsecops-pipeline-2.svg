@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#14161c"/>
+  <rect width="280" height="1000" fill="#101217"/>
+  <rect x="40" y="60" width="120" height="14" rx="7" fill="#22c55e"/>
+  <rect x="40" y="150" width="200" height="12" rx="6" fill="#2f3340"/><rect x="40" y="200" width="160" height="12" rx="6" fill="#2f3340"/><rect x="40" y="250" width="180" height="12" rx="6" fill="#2f3340"/><rect x="40" y="300" width="140" height="12" rx="6" fill="#2f3340"/>
+  <text x="340" y="120" font-family="Inter, Helvetica, Arial, sans-serif" font-size="44" font-weight="500" fill="#ffffff">DevSecOps Pipeline</text>
+  <text x="340" y="165" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#9a9ca3">Runs · this week</text>
+  <rect x="340" y="220" width="380" height="180" rx="16" fill="#1c1f27"/><rect x="750" y="220" width="380" height="180" rx="16" fill="#1c1f27"/><rect x="1160" y="220" width="380" height="180" rx="16" fill="#1c1f27"/>
+  <text x="370" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#22c55e">312</text>
+  <text x="780" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#ffffff">4m 12s</text>
+  <text x="1190" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#ffffff">98%</text>
+  <rect x="340" y="440" width="1200" height="480" rx="16" fill="#1c1f27"/>
+  <rect x="380" y="500" width="1120" height="60" rx="10" fill="#22c55e" opacity=".85"/><rect x="380" y="590" width="1120" height="60" rx="10" fill="#22c55e" opacity=".7"/><rect x="380" y="680" width="1120" height="60" rx="10" fill="#22c55e" opacity=".55"/><rect x="380" y="770" width="760" height="60" rx="10" fill="#f5c542" opacity=".8"/>
+</svg>

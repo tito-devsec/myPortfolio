@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#101418"/>
+  <rect width="280" height="1000" fill="#0c1013"/>
+  <rect x="40" y="60" width="120" height="14" rx="7" fill="#e4572e"/>
+  <rect x="40" y="150" width="200" height="12" rx="6" fill="#2a333c"/><rect x="40" y="200" width="160" height="12" rx="6" fill="#2a333c"/><rect x="40" y="250" width="180" height="12" rx="6" fill="#2a333c"/><rect x="40" y="300" width="140" height="12" rx="6" fill="#2a333c"/>
+  <text x="340" y="120" font-family="Inter, Helvetica, Arial, sans-serif" font-size="44" font-weight="500" fill="#ffffff">ThreatMonitor</text>
+  <text x="340" y="165" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#8f979f">Alerts · live</text>
+  <rect x="340" y="220" width="380" height="180" rx="16" fill="#171c22"/><rect x="750" y="220" width="380" height="180" rx="16" fill="#171c22"/><rect x="1160" y="220" width="380" height="180" rx="16" fill="#171c22"/>
+  <text x="370" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#e4572e">3</text>
+  <text x="780" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#ffffff">27</text>
+  <text x="1190" y="350" font-family="Inter, Helvetica, Arial, sans-serif" font-size="56" font-weight="500" fill="#ffffff">148</text>
+  <rect x="340" y="440" width="1200" height="480" rx="16" fill="#171c22"/>
+  <polyline points="380,820 520,700 660,760 800,560 940,640 1080,520 1220,600 1360,500 1500,580" fill="none" stroke="#e4572e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1360" cy="500" r="14" fill="#e4572e"/>
+</svg>

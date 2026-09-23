@@ -52,7 +52,8 @@ Everything dynamic lives in `js/data.js`:
 
 - `profile`: name, role lines, location, email, timezone, availability.
 - `socials`: label + URL. Leave a URL empty to render the label without a link.
-- `projects`: one object per project (`slug`, `title`, `category`, `services`, `tech`, `year`, `location`, `color`, `cover`, `description`, `live`, `github`). Order matters: the first four show on the home page and "next case" follows this order.
+- `projects`: one object per project (`slug`, `title`, `category`, `services`, `tech`, `year`, `location`, `color`, `cover`, `images`, `description`, `live`, `github`). Order matters: the first four show on the home page and "next case" follows this order.
+- `images` on a project is the case-page gallery, in order. Each item is `{ src, alt, caption }` for a picture or `{ type: 'video', src, poster }` for a muted looping video (`.mp4`/`.webm` files are detected automatically). The first item is full width, the next two sit side by side, then full width again, and so on. Leave the array empty to show only the cover.
 - `services` and `stack`: the about page grids.
 
 Page copy (headings, paragraphs) is in the HTML files.

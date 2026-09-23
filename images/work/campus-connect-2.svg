@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#efe8d3"/>
+  <rect width="280" height="1000" fill="#e6dfc8"/>
+  <rect x="40" y="60" width="120" height="14" rx="7" fill="#7c5cff"/>
+  <rect x="40" y="150" width="200" height="12" rx="6" fill="#d3ccb6"/><rect x="40" y="200" width="160" height="12" rx="6" fill="#d3ccb6"/><rect x="40" y="250" width="180" height="12" rx="6" fill="#d3ccb6"/><rect x="40" y="300" width="140" height="12" rx="6" fill="#d3ccb6"/>
+  <text x="340" y="120" font-family="Inter, Helvetica, Arial, sans-serif" font-size="44" font-weight="500" fill="#1c1d20">Campus Connect</text>
+  <text x="340" y="165" font-family="Inter, Helvetica, Arial, sans-serif" font-size="20" fill="#7a7a78">Events · this week</text>
+  <rect x="340" y="220" width="380" height="300" rx="16" fill="#ffffff"/><rect x="750" y="220" width="380" height="300" rx="16" fill="#ffffff"/><rect x="1160" y="220" width="380" height="300" rx="16" fill="#ffffff"/>
+  <rect x="340" y="220" width="380" height="140" rx="16" fill="#7c5cff"/><rect x="750" y="220" width="380" height="140" rx="16" fill="#f5c542"/><rect x="1160" y="220" width="380" height="140" rx="16" fill="#e4572e"/>
+  <rect x="370" y="400" width="240" height="16" rx="8" fill="#dcd9d2"/><rect x="780" y="400" width="200" height="16" rx="8" fill="#dcd9d2"/><rect x="1190" y="400" width="260" height="16" rx="8" fill="#dcd9d2"/>
+  <rect x="340" y="560" width="1200" height="360" rx="16" fill="#ffffff"/>
+  <rect x="380" y="620" width="1120" height="56" rx="10" fill="#f3f1ec"/><rect x="380" y="700" width="1120" height="56" rx="10" fill="#f3f1ec"/><rect x="380" y="780" width="1120" height="56" rx="10" fill="#f3f1ec"/>
+</svg>
