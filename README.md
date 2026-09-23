@@ -57,7 +57,7 @@ Page copy (headings, paragraphs) is in the HTML files.
 
 ## Images
 
-- `images/tito-hero.png` is the hero cut-out. It is currently a stock placeholder; replace it with a transparent PNG cut-out of your own photo (same file name, portrait orientation).
+- The hero figure is set by `profile.heroImage` in `js/data.js`. It must be a PNG cut-out with a transparent background (remove.bg does this in one click). `images/tito-hero.png` is a stock placeholder with a solid black background, so the setting is empty and the hero stays plain grey until you point it at your own cut-out.
 - `images/profile.jpeg` is used for the about page photo, the avatar in the contact call-to-action and the contact page.
 
 ## Fonts

@@ -24,8 +24,14 @@
     const hero = $('#hero', container);
     if (hero) {
       App.cleanups.push(fx.marquee(hero));
-      const img = $('.hero__img', hero);
-      if (img) gsap.to(img, { y: 120, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      // Hero figure: only shown when a (transparent) cut-out is configured in js/data.js
+      const wrap = $('[data-hero-img]', hero);
+      const src = (SITE.profile && SITE.profile.heroImage) || '';
+      if (wrap) {
+        const img = wrap.querySelector('img');
+        if (src && img) { img.src = src; wrap.hidden = false; } else { wrap.hidden = true; }
+        if (src) gsap.to(wrap, { y: 120, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      }
     }
   };
 

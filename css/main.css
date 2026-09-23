@@ -332,7 +332,7 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
 }
 .hero__tagline svg { width: 24px; height: 24px; margin-bottom: 80px; }
 .hero__marquee { position: absolute; left: 0; bottom: 6vh; width: 100%; overflow: hidden; z-index: 2; }
-.hero__slider { position: relative; white-space: nowrap; will-change: transform; }
+.hero__slider { position: relative; width: max-content; white-space: nowrap; will-change: transform; }
 .hero__slider p {
   position: relative;
   margin: 0;
