@@ -74,6 +74,10 @@ images: [
 
 3. Fill in `tech`, `year` and `description`, then commit and push.
 
+A project can also have a `video: { src, poster }` field. When it is set, the case page replaces the static laptop frame with a 3D laptop that lifts, tilts and opens as the visitor scrolls, playing the video on its screen (muted, only while on screen). Keep recordings short and compressed (a few MB): they are served straight from the repo.
+
+Two Moran screenshots are listed but commented out in `js/data.js` because they show customer names, a phone number and admin email addresses. Blur those details, then remove the `//` to publish them.
+
 ## Images
 
 - The hero figure is set by `profile.heroImage` in `js/data.js`. It must be a PNG cut-out with a transparent background (remove.bg does this in one click). `images/tito-hero.png` is a stock placeholder with a solid black background, so the setting is empty and the hero stays plain grey until you point it at your own cut-out.

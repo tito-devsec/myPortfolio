@@ -7,6 +7,8 @@
 // Unsplash CDN helper for the sample photos (free to use, no attribution required).
 // Replace any of these with your own screenshots, e.g. 'images/work/my-project-1.jpg'.
 const U = (id, w = 1600) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
+// Local asset helper: makes paths with spaces safe for the browser.
+const A = (path) => encodeURI(path);
 
 window.SITE = {
   // Backend base URL once the admin/API exists, e.g. 'https://api.titodevsec.com/api'.
@@ -52,38 +54,48 @@ window.SITE = {
     // ── Real work ──────────────────────────────────────────────────────────
     {
       slug: 'moranai',
-      title: 'Moranai',
+      title: 'Moran AI',
       category: 'Development',
       services: 'Design & Development',
-      tech: [],                 // TODO: e.g. ['Next.js', 'TailwindCSS', 'Node.js']
-      year: '2025',             // TODO: confirm
-      location: 'Tanzania',
-      color: '#e4e5e7',
-      cover: 'images/work/moranai.svg',            // TODO: replace with a screenshot, e.g. 'images/work/moranai-1.jpg'
+      tech: [],                 // TODO: e.g. ['Next.js', 'Node.js', 'WhatsApp Business API']
+      year: '2026',
+      location: 'Dar es Salaam, Tanzania',
+      color: '#dff3ea',
+      cover: A('images/work/moranai.co.tz/Screenshot 2026-09-23 173020.png'),
       placeholder: 'images/work/moranai.svg',
+      // Screen recording shown inside the scroll-animated 3D laptop on the case page.
+      video: {
+        src: A('images/work/moranai.co.tz/Recording 2026-09-23 173238.mp4'),
+        poster: A('images/work/moranai.co.tz/Screenshot 2026-09-23 173020.png'),
+      },
       images: [
-        // TODO: drop your files into images/work/ (and videos/) and list them here, e.g.
-        // { type: 'video', src: 'videos/moranai.mp4', poster: 'images/work/moranai-1.jpg' },
-        // { src: 'images/work/moranai-2.jpg', alt: 'Home page' },
-        // { src: 'images/work/moranai-3.jpg', alt: 'Services page' },
+        { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172507.png'), alt: 'Why businesses choose Moran AI: 5k+ businesses, 1M+ conversations, 24/7 coverage' },
+        { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172750.png'), alt: 'Customer dashboard: Moran agents (Sales, Lead Qualification, Support, Booking)' },
+        { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172533.png'), alt: 'Call to action and site footer' },
+        // Contains customer names and a phone number. Blur them first, then uncomment:
+        // { src: A('images/work/moranai.co.tz/Screenshot 2026-09-23 172727.png'), alt: 'Dashboard: chat and human handover' },
       ],
-      description: 'Website for Moranai, live at moranai.co.tz. Screenshots, a video walkthrough and the full write-up are coming soon.',
+      description: 'Moran AI gives businesses an intelligent sales and support agent on WhatsApp: it answers customers in Swahili and English, captures leads, takes orders and bookings and hands over to a human whenever needed. The product spans the public site and the customer dashboard: agent workspace, chat and handover, leads, campaign engine, orders, voice assistance, social media manager and a knowledge base.',
       live: 'https://moranai.co.tz',
       github: '',
     },
     {
       slug: 'weare-moranai',
-      title: 'We Are Moranai',
-      category: 'Design',
-      services: 'Design & Development',
+      title: 'Moran AI Admin',
+      category: 'Development',
+      services: 'Development & Security',
       tech: [],                 // TODO
-      year: '2025',             // TODO: confirm
-      location: 'Tanzania',
-      color: '#d5dbe0',
-      cover: 'images/work/weare-moranai.svg',      // TODO: replace with a screenshot
+      year: '2026',
+      location: 'Dar es Salaam, Tanzania',
+      color: '#0f2b21',
+      cover: A('images/work/weare.moranai/Screenshot 2026-09-23 174022.png'),
       placeholder: 'images/work/weare-moranai.svg',
-      images: [],               // TODO: screenshots / video as above
-      description: 'Companion site for Moranai, live at weare.moranai.co.tz. Screenshots and a video walkthrough are coming soon.',
+      images: [
+        { src: A('images/work/weare.moranai/Screenshot 2026-09-23 173943.png'), alt: 'Two-factor login with an authenticator code' },
+        // Contains admin names and email addresses. Blur them first, then uncomment:
+        // { src: A('images/work/weare.moranai/Screenshot 2026-09-23 174053.png'), alt: 'Users and roles: admins, owners, permissions, sign-in activity' },
+      ],
+      description: 'Internal operations console for the Moran AI platform at weare.moranai.co.tz. It tracks revenue, AI cost, businesses, agents and conversations at a glance, manages WhatsApp channels, campaigns and support, and is protected by two-factor login with granular roles, permissions, sign-in activity and audit logs.',
       live: 'https://weare.moranai.co.tz',
       github: '',
     },

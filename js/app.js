@@ -183,6 +183,28 @@
     });
   };
 
+  // 3D laptop: the device lifts and tilts toward the viewer while the lid opens, driven by scroll.
+  // The video plays only while the section is on screen.
+  App.fx.device = (scene) => {
+    const laptop = $('.laptop', scene);
+    const lid = $('.laptop__lid', scene);
+    const video = $('video', scene);
+    if (!laptop || !lid) return;
+    const small = window.innerWidth < 768;
+    gsap.set(laptop, { rotationX: small ? 40 : 55, y: small ? 40 : 120, scale: small ? 0.92 : 0.85, transformOrigin: '50% 100%' });
+    gsap.set(lid, { rotationX: -75 });
+    const tl = gsap.timeline({ scrollTrigger: { trigger: scene, start: 'top 90%', end: 'center 45%', scrub: 0.6 } });
+    tl.to(laptop, { rotationX: small ? 8 : 12, y: 0, scale: 1, ease: 'none' }, 0)
+      .to(lid, { rotationX: 0, ease: 'none' }, 0);
+    if (video) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { video.play().catch(() => {}); } else { video.pause(); } });
+      }, { threshold: 0.2 });
+      io.observe(scene);
+      App.cleanups.push(() => io.disconnect());
+    }
+  };
+
   // Hero marquee: endless loop whose speed and direction follow the scroll velocity.
   App.fx.marquee = (hero) => {
     const slider = $('.hero__slider', hero);
@@ -349,6 +371,27 @@
         ${it.caption ? `<figcaption>${esc(it.caption)}</figcaption>` : ''}
       </figure>`;
     },
+    // 3D laptop that opens as the visitor scrolls, playing the project video on its screen.
+    caseDevice(p) {
+      const v = p.video;
+      return `<section class="case-device" style="background:${esc(p.color)}">
+        <div class="device-scene">
+          <div class="laptop">
+            <div class="laptop__lid">
+              <span class="laptop__camera"></span>
+              <div class="laptop__screen">
+                <video src="${esc(v.src)}"${v.poster ? ` poster="${esc(v.poster)}"` : ''} muted loop playsinline preload="metadata"></video>
+              </div>
+            </div>
+            <div class="laptop__base">
+              <span class="laptop__keys"></span>
+              <span class="laptop__pad"></span>
+              <span class="laptop__shadow"></span>
+            </div>
+          </div>
+        </div>
+      </section>`;
+    },
     // Gallery layout: one full-width item, then a pair side by side, and so on.
     caseGallery(p) {
       const items = (p.images || []).filter((it) => it && it.src);
@@ -381,7 +424,7 @@
         <p class="label" data-reveal="fade">About the project</p>
         <div data-reveal="fade"><p>${esc(p.description)}</p>${tech.length ? `<ul class="case-tags">${tech.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}</div>
       </section>
-      <section class="case-mock" style="background:${esc(p.color)}"><div class="case-mock__frame" data-reveal="fade"><img src="${esc(p.cover)}" alt="" loading="lazy"${p.placeholder ? ` data-fallback="${esc(p.placeholder)}"` : ''} /></div></section>
+      ${p.video && p.video.src ? R.caseDevice(p) : `<section class="case-mock" style="background:${esc(p.color)}"><div class="case-mock__frame" data-reveal="fade"><img src="${esc(p.cover)}" alt="" loading="lazy"${p.placeholder ? ` data-fallback="${esc(p.placeholder)}"` : ''} /></div></section>`}
       ${R.caseGallery(p)}
       <section class="next-case" style="--curve-from:#ffffff">
         <div class="rounded-wrap"><div class="rounded"></div></div>
@@ -585,6 +628,7 @@
     $$('.magnetic', container).forEach(App.fx.magnetic);
     $$('.btn-round, .btn-circle, .filter, .view-btn', container).forEach(App.fx.rounded);
     $$('[data-parallax]', container).forEach((el) => App.fx.parallax(el));
+    $$('.device-scene', container).forEach((el) => App.fx.device(el));
     $$('.cta', container).forEach((sec) => {
       const wrap = $('.cta__btn-wrap', sec);
       if (wrap && !isMobile()) gsap.fromTo(wrap, { x: 220 }, { x: 0, ease: 'none', scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top 20%', scrub: true } });
