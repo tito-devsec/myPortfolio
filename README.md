@@ -27,7 +27,7 @@ python -m http.server 8080
 
 Then open http://localhost:3000 (serve) or http://localhost:8080 (python).
 
-`serve.json` turns off serve's "clean URLs" rewriting. Without it, `work-detail.html?p=<slug>` is redirected to `/work-detail` and the slug is lost, so every case page would show the first project.
+`serve.json` turns off serve's "clean URLs" rewriting (which would redirect `work-detail.html?p=<slug>` to `/work-detail` and lose the slug) and maps `/` to `index.html` explicitly, because serve stops doing that on its own once clean URLs are off. Restart `npx serve .` after changing it.
 
 ## Structure
 
