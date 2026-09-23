@@ -1,6 +1,9 @@
 # previous version of the site, kept locally for reference only
 _old-site/
 
+# local tooling
+.claude/
+
 # OS / editor noise
 .DS_Store
 Thumbs.db

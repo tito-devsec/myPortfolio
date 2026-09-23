@@ -27,6 +27,8 @@ python -m http.server 8080
 
 Then open http://localhost:3000 (serve) or http://localhost:8080 (python).
 
+`serve.json` turns off serve's "clean URLs" rewriting. Without it, `work-detail.html?p=<slug>` is redirected to `/work-detail` and the slug is lost, so every case page would show the first project.
+
 ## Structure
 
 | Path | What it is |

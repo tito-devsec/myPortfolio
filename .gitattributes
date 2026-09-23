@@ -1,0 +1,9 @@
+# Keep text files LF everywhere (stops the CRLF warnings on Windows)
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
