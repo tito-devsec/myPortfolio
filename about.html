@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Titodevsec</title>
+  <meta name="description" content="About Tito Oscar Mwaisengela (Titodevsec): full-stack developer, Certified Advanced Penetration Tester and Computer Science student at the University of Dar es Salaam." />
+  <meta property="og:title" content="About — Titodevsec" />
+  <meta property="og:description" content="Full-stack developer and cybersecurity specialist based in Dar es Salaam, Tanzania." />
+  <meta property="og:image" content="images/profile.jpeg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23455ce9'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' fill='white'%3ET%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+<noscript><style>.preloader,.transition{display:none!important}</style></noscript>
+
+<!-- ═══ Preloader ═══ -->
+<div id="preloader" class="preloader" aria-hidden="true">
+  <p class="preloader__word"><span class="preloader__dot"></span><span id="preloader-text"></span></p>
+  <svg class="preloader__curve" aria-hidden="true"><path id="preloader-path" d=""/></svg>
+</div>
+
+<!-- ═══ Page transition curtain ═══ -->
+<div id="transition" class="transition" aria-hidden="true">
+  <svg class="transition__svg" aria-hidden="true"><path id="transition-path" d=""/></svg>
+  <p class="transition__label"><span class="preloader__dot"></span><span id="transition-text"></span></p>
+</div>
+
+<!-- ═══ Header ═══ -->
+<header id="header" class="header" data-theme="dark">
+  <a class="logo magnetic" href="index.html" aria-label="Titodevsec — home">
+    <span class="logo__copy">©</span>
+    <span class="logo__code">Code by</span>
+    <span class="logo__name"><span class="logo__first">Tito</span><span class="logo__last">Mwaisengela</span></span>
+  </a>
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__link magnetic" href="work.html" data-ns="work">Work</a>
+    <a class="nav__link magnetic" href="about.html" data-ns="about">About</a>
+    <a class="nav__link magnetic" href="contact.html" data-ns="contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ═══ Floating menu button ═══ -->
+<button id="nav-btn" class="nav-btn magnetic" type="button" aria-label="Open menu" aria-expanded="false"><span class="burger magnetic__inner"></span></button>
+
+<!-- ═══ Slide-in menu ═══ -->
+<div id="panel-backdrop" class="panel-backdrop"></div>
+<aside id="panel" class="panel" aria-hidden="true">
+  <svg class="panel__curve" aria-hidden="true"><path id="panel-path" d=""/></svg>
+  <div class="panel__inner">
+    <div>
+      <p class="panel__label">Navigation</p>
+      <nav class="panel__nav" aria-label="Menu">
+        <a class="panel__link" href="index.html" data-ns="home">Home</a>
+        <a class="panel__link" href="work.html" data-ns="work">Work</a>
+        <a class="panel__link" href="about.html" data-ns="about">About</a>
+        <a class="panel__link" href="contact.html" data-ns="contact">Contact</a>
+      </nav>
+    </div>
+    <div class="panel__footer">
+      <p class="panel__label panel__label--plain">Socials</p>
+      <div class="panel__socials" data-socials></div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ Project hover preview ═══ -->
+<div id="modal" class="modal" aria-hidden="true"><div id="modal-slider" class="modal__slider"></div></div>
+<div id="modal-cursor" class="modal__cursor" aria-hidden="true"></div>
+<div id="modal-label" class="modal__label" aria-hidden="true">View</div>
+
+<div data-barba="wrapper">
+  <main data-barba="container" data-barba-namespace="about" data-header="dark" class="page page--about">
+
+    <section class="about-head">
+      <h1 class="h1" data-reveal="words">Helping businesses thrive in the digital world</h1>
+      <div class="about-head__line"><div class="about-head__globe" id="about-globe" data-globe></div></div>
+    </section>
+
+    <section class="about-intro">
+      <div class="about-intro__arrow" data-arrow="arrowRight"></div>
+      <div class="about-intro__text">
+        <p data-reveal="fade">I help companies and people build secure, scalable digital systems with tailor-made solutions. From clean interfaces to efficient backends to penetration testing, I take care of every layer. With each project I push my work to new horizons, always putting quality and security first.</p>
+        <p data-reveal="fade">I'm a Computer Science student at the University of Dar es Salaam, a Certified Advanced Penetration Tester and Vice President of the UDSM Cybersecurity Club, where I run workshops and CTF competitions for the next generation of security professionals in Tanzania.</p>
+        <p class="about-intro__note" data-reveal="fade">Always exploring …</p>
+        <div class="about-intro__creds" data-reveal="fade">
+          <p class="label">Credentials</p>
+          <ul>
+            <li>Certified Advanced Penetration Tester — Hackviser</li>
+            <li>Vice President — Cybersecurity Club, UDSM</li>
+            <li>BSc Computer Science — University of Dar es Salaam</li>
+          </ul>
+        </div>
+      </div>
+      <div class="about-intro__photo" data-parallax><img src="images/profile.jpeg" alt="Tito Oscar Mwaisengela" /></div>
+    </section>
+
+    <section class="services">
+      <h2 data-reveal="words">I can help you with …</h2>
+      <div class="services__grid" data-services></div>
+    </section>
+
+    <section class="stack">
+      <h2 data-reveal="words">Tech stack</h2>
+      <div class="stack__grid" data-stack></div>
+    </section>
+
+    <!-- Contact call-to-action + footer (rendered by js/app.js) -->
+    <div data-contact-cta data-curve="#ffffff"></div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3/dist/barba.umd.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>

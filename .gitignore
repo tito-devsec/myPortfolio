@@ -1,0 +1,10 @@
+# previous version of the site, kept locally for reference only
+_old-site/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.vscode/
+.idea/

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Titodevsec</title>
+  <meta name="description" content="Start a project with Tito Oscar Mwaisengela (Titodevsec): full-stack development and cybersecurity, based in Dar es Salaam, Tanzania." />
+  <meta property="og:title" content="Contact — Titodevsec" />
+  <meta property="og:description" content="Start a project with Tito Oscar Mwaisengela: full-stack development and cybersecurity." />
+  <meta property="og:image" content="images/profile.jpeg" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23455ce9'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' fill='white'%3ET%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+<noscript><style>.preloader,.transition{display:none!important}</style></noscript>
+
+<!-- ═══ Preloader ═══ -->
+<div id="preloader" class="preloader" aria-hidden="true">
+  <p class="preloader__word"><span class="preloader__dot"></span><span id="preloader-text"></span></p>
+  <svg class="preloader__curve" aria-hidden="true"><path id="preloader-path" d=""/></svg>
+</div>
+
+<!-- ═══ Page transition curtain ═══ -->
+<div id="transition" class="transition" aria-hidden="true">
+  <svg class="transition__svg" aria-hidden="true"><path id="transition-path" d=""/></svg>
+  <p class="transition__label"><span class="preloader__dot"></span><span id="transition-text"></span></p>
+</div>
+
+<!-- ═══ Header ═══ -->
+<header id="header" class="header" data-theme="light">
+  <a class="logo magnetic" href="index.html" aria-label="Titodevsec — home">
+    <span class="logo__copy">©</span>
+    <span class="logo__code">Code by</span>
+    <span class="logo__name"><span class="logo__first">Tito</span><span class="logo__last">Mwaisengela</span></span>
+  </a>
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__link magnetic" href="work.html" data-ns="work">Work</a>
+    <a class="nav__link magnetic" href="about.html" data-ns="about">About</a>
+    <a class="nav__link magnetic" href="contact.html" data-ns="contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ═══ Floating menu button ═══ -->
+<button id="nav-btn" class="nav-btn magnetic" type="button" aria-label="Open menu" aria-expanded="false"><span class="burger magnetic__inner"></span></button>
+
+<!-- ═══ Slide-in menu ═══ -->
+<div id="panel-backdrop" class="panel-backdrop"></div>
+<aside id="panel" class="panel" aria-hidden="true">
+  <svg class="panel__curve" aria-hidden="true"><path id="panel-path" d=""/></svg>
+  <div class="panel__inner">
+    <div>
+      <p class="panel__label">Navigation</p>
+      <nav class="panel__nav" aria-label="Menu">
+        <a class="panel__link" href="index.html" data-ns="home">Home</a>
+        <a class="panel__link" href="work.html" data-ns="work">Work</a>
+        <a class="panel__link" href="about.html" data-ns="about">About</a>
+        <a class="panel__link" href="contact.html" data-ns="contact">Contact</a>
+      </nav>
+    </div>
+    <div class="panel__footer">
+      <p class="panel__label panel__label--plain">Socials</p>
+      <div class="panel__socials" data-socials></div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══ Project hover preview ═══ -->
+<div id="modal" class="modal" aria-hidden="true"><div id="modal-slider" class="modal__slider"></div></div>
+<div id="modal-cursor" class="modal__cursor" aria-hidden="true"></div>
+<div id="modal-label" class="modal__label" aria-hidden="true">View</div>
+
+<div data-barba="wrapper">
+  <main data-barba="container" data-barba-namespace="contact" data-header="light" class="page page--contact">
+
+    <section class="contact">
+      <div class="contact__main">
+        <h1 class="h1" data-reveal="words">Let's start a project together</h1>
+
+        <form class="cform" id="contact-form" novalidate>
+          <div class="cform__row">
+            <span class="cform__num">01</span>
+            <div class="cform__field">
+              <label for="cf-name">What's your name?</label>
+              <input id="cf-name" name="name" type="text" placeholder="John Doe *" autocomplete="name" required />
+            </div>
+          </div>
+          <div class="cform__row">
+            <span class="cform__num">02</span>
+            <div class="cform__field">
+              <label for="cf-email">What's your email?</label>
+              <input id="cf-email" name="email" type="email" placeholder="john@doe.com *" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="cform__row">
+            <span class="cform__num">03</span>
+            <div class="cform__field">
+              <label for="cf-org">What's the name of your organization?</label>
+              <input id="cf-org" name="organization" type="text" placeholder="John &amp; Doe ®" autocomplete="organization" />
+            </div>
+          </div>
+          <div class="cform__row">
+            <span class="cform__num">04</span>
+            <div class="cform__field">
+              <label for="cf-services">What services are you looking for?</label>
+              <input id="cf-services" name="services" type="text" placeholder="Web Development, Security Audit …" />
+            </div>
+          </div>
+          <div class="cform__row cform__row--last">
+            <span class="cform__num">05</span>
+            <div class="cform__field">
+              <label for="cf-message">Your message</label>
+              <textarea id="cf-message" name="message" rows="5" placeholder="Hello Tito, can you help me with … *" required></textarea>
+            </div>
+          </div>
+          <div class="cform__submit">
+            <button class="btn-circle btn-circle--blue magnetic" type="submit"><span class="magnetic__inner">Send it!</span><span class="btn__fill"></span></button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Rendered by js/app.js from js/data.js (avatar, contact details, location, socials) -->
+      <aside class="contact__aside" data-contact-aside></aside>
+    </section>
+
+    <div data-footer></div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3/dist/barba.umd.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pages.js"></script>
+</body>
+</html>
