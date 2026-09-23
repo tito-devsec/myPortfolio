@@ -282,8 +282,10 @@ export function mountLaptop({ container, video, poster, getProgress, finish = 's
   const camera = new THREE.PerspectiveCamera(26, 16 / 11, 0.5, 400);
 
   // Key light for the contact shadow; the environment carries the ambience
+  // Steep and slightly to the front so the open lid's shadow stays tucked behind the base
+  // instead of stretching across the floor as a detached shape.
   const key = new THREE.DirectionalLight(0xffffff, 1.9);
-  key.position.set(18, 40, 26);
+  key.position.set(9, 58, 16);
   key.castShadow = true;
   key.shadow.mapSize.set(2048, 2048);
   key.shadow.camera.left = -34; key.shadow.camera.right = 34;
@@ -295,7 +297,7 @@ export function mountLaptop({ container, video, poster, getProgress, finish = 's
   scene.add(new THREE.HemisphereLight(0xffffff, 0x8b8f98, 0.25));
 
   // Ground that only shows the shadow
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), new THREE.ShadowMaterial({ opacity: 0.34 }));
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), new THREE.ShadowMaterial({ opacity: 0.26 }));
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.12;
   ground.receiveShadow = true;
@@ -372,7 +374,7 @@ export function mountLaptop({ container, video, poster, getProgress, finish = 's
     lid.rotation.x = lerp(-0.04, -1.92, e);                          // 2° → 110°
     group.rotation.y = lerp(-0.7, -0.2, e) + pointer.x * 0.06;       // ends at a gentle 3/4 view
     group.rotation.x = -pointer.y * 0.02;
-    camera.position.set(lerp(18, 4, e) + pointer.x * 1.5, lerp(46, 15, e) - pointer.y * 1.5, lerp(84, 60, e));
+    camera.position.set(lerp(18, 4, e) + pointer.x * 1.5, lerp(46, 16, e) - pointer.y * 1.5, lerp(84, 66, e));
     camera.lookAt(0, lerp(0.5, 8.5, e), 0);
     renderer.render(scene, camera);
     if (!shown) { shown = true; canvas.classList.add('is-on'); }
