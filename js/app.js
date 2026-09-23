@@ -296,7 +296,11 @@
       </section>`;
     },
     projectRow(p, i) {
-      return `<a class="project" href="${R.caseUrl(p.slug)}" data-index="${i}"><h2>${esc(p.title)}</h2><p>${esc(p.services)}</p></a>`;
+      // The image only shows on small screens, where the row turns into a card (no hover preview on touch).
+      return `<a class="project" href="${R.caseUrl(p.slug)}" data-index="${i}">
+        <div class="project__img" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt="" loading="lazy" /></div>
+        <div class="project__text"><h2>${esc(p.title)}</h2><p>${esc(p.services)}</p></div>
+      </a>`;
     },
     workRow(p, i) {
       return `<a class="work-row" href="${R.caseUrl(p.slug)}" data-index="${i}"><h2>${esc(p.title)}</h2><p>${esc(p.location)}</p><p>${esc(p.services)}</p><p>${esc(p.year)}</p></a>`;

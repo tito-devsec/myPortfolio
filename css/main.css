@@ -148,7 +148,8 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
   transform: scale(0);
   transition: background 0.3s;
 }
-.nav-btn.is-open { background: var(--blue); }
+.nav-btn { border: 1px solid rgba(255, 255, 255, 0.22); } /* keeps the circle visible on dark sections */
+.nav-btn.is-open { background: var(--blue); border-color: var(--blue); }
 .burger { position: absolute; inset: 0; display: block; }
 .burger::before, .burger::after {
   content: '';
@@ -357,14 +358,13 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
 .projects { padding: 0 var(--pad-o) 120px; }
 .projects__label { padding: 0 calc(var(--pad-x) - var(--pad-o)) 50px; }
 .project {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
+  display: block;
   padding: 50px calc(var(--pad-x) - var(--pad-o));
   border-top: 1px solid var(--line);
   transition: opacity 0.25s;
 }
+.project__img { display: none; }
+.project__text { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
 .project:last-child { border-bottom: 1px solid var(--line); }
 .project h2 { font-size: clamp(32px, 4.2vw, 60px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; transition: transform 0.4s var(--ease); }
 .project p { font-size: 16px; font-weight: 300; text-align: right; transition: transform 0.4s var(--ease); }
@@ -653,20 +653,35 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
   .modal, .modal__cursor, .modal__label { display: none; }
 }
 @media (max-width: 768px) {
+  :root { --pad-x: 24px; --pad-o: 24px; --gutter: 20px; }
+  a, button { -webkit-tap-highlight-color: transparent; }
   .header { padding: 24px var(--gutter); }
   .nav-btn { width: 64px; height: 64px; top: 16px; right: 16px; }
   .hero { min-height: 560px; }
   .hero__img { height: 78%; }
-  .hero__location { top: auto; bottom: 34%; margin-top: 0; height: 84px; padding-left: 22px; font-size: 13px; }
+  .hero__location { top: 34%; bottom: auto; margin-top: 0; height: 84px; padding: 0 10px 0 22px; font-size: 13px; }
+  .hero__location p { padding-right: 16px; }
   .hero__globe { width: 64px; height: 64px; }
-  .hero__tagline { right: 24px; top: 18%; font-size: 18px; }
-  .hero__tagline svg { margin-bottom: 30px; }
+  .hero__globe svg { width: 28px; height: 28px; }
+  .hero__tagline { right: 24px; top: 52%; font-size: 18px; text-align: right; }
+  .hero__tagline svg { margin: 0 0 24px auto; }
+  .hero__marquee { bottom: 8vh; }
   .hero__slider p { font-size: 22vw; }
+  .btn-round { padding: 16px 28px; font-size: 15px; }
+  .cta__pills .btn-round { max-width: 100%; }
   .intro { padding: 120px var(--pad-x) 80px; }
   .btn-circle { width: 140px; height: 140px; font-size: 15px; }
-  .project { flex-direction: column; align-items: flex-start; gap: 10px; padding: 30px 0; }
-  .project p { text-align: left; }
+  .project { padding: 24px 0 32px; }
+  .project:hover { opacity: 1; }
   .project:hover h2, .project:hover p { transform: none; }
+  .project__img {
+    display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 4 / 3; padding: 8%; margin-bottom: 20px; overflow: hidden;
+  }
+  .project__img img { width: 100%; height: auto; }
+  .project__text { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .project h2 { font-size: 30px; }
+  .project p { text-align: left; }
   .projects__label { padding-left: 0; }
   .projects__more { padding-top: 60px; }
   .work-table__head { display: none; }
@@ -680,8 +695,12 @@ sup { font-size: 0.6em; vertical-align: top; margin-left: 4px; line-height: 1; }
   .cta__title h2 { max-width: none; }
   .cta__line { margin: 60px 0 200px; }
   .cta__btn-wrap { left: 0; top: 40px; }
-  .footer { flex-direction: column; align-items: flex-start; padding-top: 100px; }
+  .footer { flex-direction: column; align-items: flex-start; padding: 100px var(--pad-x) 32px; }
   .footer__group { flex-direction: column; gap: 30px; }
+  .work-grid { gap: 50px; }
+  .case-actions { justify-content: center; margin-top: 30px; }
+  .services, .stack { padding: 100px var(--pad-x); }
+  .intro__side { gap: 40px; }
   .panel__inner { padding: 90px 40px 40px; }
   .panel__link::before { left: -22px; }
   .cform { margin-top: 80px; }

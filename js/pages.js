@@ -52,13 +52,16 @@
   App.pages.work = (container) => {
     const all = projects();
     let filter = 'all';
-    let view = 'list';
+    let view = App.isMobile() ? 'grid' : 'list';   // cards on phones, table on desktop
     const filtersEl = $('#filters', container);
     const rowsEl = $('#work-rows', container);
     const gridEl = $('#work-grid', container);
     const listEl = $('#work-list', container);
     if (!filtersEl || !rowsEl || !gridEl || !listEl) return;
 
+    listEl.hidden = view !== 'list';
+    gridEl.hidden = view !== 'grid';
+    $$('.view-btn', container).forEach((b) => b.classList.toggle('is-active', b.dataset.view === view));
     filtersEl.innerHTML = R.filters(all);
     const current = () => (filter === 'all' ? all : all.filter((p) => p.category === filter));
 
