@@ -18,6 +18,10 @@
   RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?]
   RewriteRule ^ /%1 [R=301,L]
 
+  # Old case link /work-detail?p=<slug> → pretty /work/<slug>
+  RewriteCond %{QUERY_STRING} ^p=([A-Za-z0-9_-]+)$
+  RewriteRule ^work-detail/?$ /work/%1? [R=301,L]
+
   # Pretty case pages: /work/<slug> → work-detail.html?p=<slug>
   RewriteRule ^work/([A-Za-z0-9_-]+)/?$ work-detail.html?p=$1 [L,QSA]
 
