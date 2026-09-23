@@ -19,7 +19,7 @@ window.SITE = {
     availability: 'Open for freelance work',
     avatar: 'images/profile.jpeg',
     // Hero figure: a PNG cut-out with a TRANSPARENT background. Leave empty for the plain grey hero.
-    heroImage: 'images/hero.png',
+    heroImage: '',   // set to 'images/hero.png' to show the figure again
     // Rotation applied to the figure in degrees (negative = counter-clockwise) to stand it upright.
     // Set to 0 once the image file itself is upright.
     heroRotate: -24,

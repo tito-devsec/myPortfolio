@@ -27,7 +27,7 @@ python -m http.server 8080
 
 Then open http://localhost:3000 (serve) or http://localhost:8080 (python).
 
-`serve.json` turns off serve's "clean URLs" rewriting (which would redirect `work-detail.html?p=<slug>` to `/work-detail` and lose the slug) and maps `/` to `index.html` explicitly, because serve stops doing that on its own once clean URLs are off. Restart `npx serve .` after changing it.
+`serve.json` turns off serve's "clean URLs" rewriting (which would redirect `work-detail.html?p=<slug>` to `/work-detail` and lose the slug), maps `/` to `index.html` explicitly, and maps the extension-less paths (`/work`, `/about`, …) back to their files so browsers that cached the old redirects still work. Restart `npx serve .` after changing it. Case links carry the slug in both the query and the hash for the same reason.
 
 ## Structure
 

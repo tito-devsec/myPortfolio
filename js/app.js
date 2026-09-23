@@ -258,6 +258,9 @@
 
   /* ---------- Templates ---------- */
   const R = (App.render = {
+    // Case URL carries the slug twice on purpose: the query is the primary source, the hash
+    // survives redirects that strip query strings (e.g. cached "clean URL" redirects).
+    caseUrl(slug) { return `work-detail.html?p=${esc(slug)}#${esc(slug)}`; },
     socials(cls) {
       return (SITE.socials || []).map((s) => s.url
         ? `<a class="${cls}" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`
@@ -293,13 +296,13 @@
       </section>`;
     },
     projectRow(p, i) {
-      return `<a class="project" href="work-detail.html?p=${esc(p.slug)}" data-index="${i}"><h2>${esc(p.title)}</h2><p>${esc(p.services)}</p></a>`;
+      return `<a class="project" href="${R.caseUrl(p.slug)}" data-index="${i}"><h2>${esc(p.title)}</h2><p>${esc(p.services)}</p></a>`;
     },
     workRow(p, i) {
-      return `<a class="work-row" href="work-detail.html?p=${esc(p.slug)}" data-index="${i}"><h2>${esc(p.title)}</h2><p>${esc(p.location)}</p><p>${esc(p.services)}</p><p>${esc(p.year)}</p></a>`;
+      return `<a class="work-row" href="${R.caseUrl(p.slug)}" data-index="${i}"><h2>${esc(p.title)}</h2><p>${esc(p.location)}</p><p>${esc(p.services)}</p><p>${esc(p.year)}</p></a>`;
     },
     workCard(p) {
-      return `<a class="work-card" href="work-detail.html?p=${esc(p.slug)}">
+      return `<a class="work-card" href="${R.caseUrl(p.slug)}">
         <div class="work-card__img" style="background:${esc(p.color)}"><img src="${esc(p.cover)}" alt="${esc(p.title)}" loading="lazy" /></div>
         <h2>${esc(p.title)}</h2>
         <div class="work-card__meta"><span>${esc(p.services)}</span><span>${esc(p.year)}</span></div>
@@ -379,11 +382,11 @@
       <section class="next-case" style="--curve-from:#ffffff">
         <div class="rounded-wrap"><div class="rounded"></div></div>
         <p class="next-case__label">Next case</p>
-        <a class="next-case__link" href="work-detail.html?p=${esc(next.slug)}">
+        <a class="next-case__link" href="${R.caseUrl(next.slug)}">
           <h2 class="next-case__title">${esc(next.title)}</h2>
           <div class="next-case__img" data-parallax><img src="${esc(next.cover)}" alt="${esc(next.title)}" loading="lazy" /></div>
         </a>
-        <div class="next-case__line"><a class="btn-circle btn-circle--blue magnetic" href="work-detail.html?p=${esc(next.slug)}"><span class="magnetic__inner">Next case</span><span class="btn__fill"></span></a></div>
+        <div class="next-case__line"><a class="btn-circle btn-circle--blue magnetic" href="${R.caseUrl(next.slug)}"><span class="magnetic__inner">Next case</span><span class="btn__fill"></span></a></div>
         <div class="next-case__all"><a class="btn-round btn-round--ghost magnetic" href="work.html"><span class="magnetic__inner">All work<sup>${total}</sup></span><span class="btn__fill"></span></a></div>
         ${R.footer()}
       </section>`;
