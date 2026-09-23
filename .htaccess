@@ -1,0 +1,68 @@
+# Titodevsec — Apache / LiteSpeed settings (Hostinger). Ignored by Nginx; see README for the equivalent.
+
+<IfModule mod_negotiation.c>
+  Options -MultiViews
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Always use HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Old-style links with .html → clean URL (permanent redirect, query string kept)
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
+  RewriteRule ^index\.html$ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Pretty case pages: /work/<slug> → work-detail.html?p=<slug>
+  RewriteRule ^work/([A-Za-z0-9_-]+)/?$ work-detail.html?p=$1 [L,QSA]
+
+  # Clean URLs for the pages
+  RewriteRule ^work/?$ work.html [L,QSA]
+  RewriteRule ^about/?$ about.html [L,QSA]
+  RewriteRule ^contact/?$ contact.html [L,QSA]
+  RewriteRule ^work-detail/?$ work-detail.html [L,QSA]
+
+  # Any other /name → name.html when that file exists
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^./]+)/?$ $1.html [L,QSA]
+
+  # Keep local-only folders private
+  RewriteRule ^(_old-site|\.claude|\.git)(/|$) - [F,L]
+</IfModule>
+
+# Custom 404 page
+ErrorDocument 404 /404.html
+
+# Correct types for the assets used
+<IfModule mod_mime.c>
+  AddType video/mp4 .mp4
+  AddType video/webm .webm
+  AddType image/svg+xml .svg
+  AddType image/webp .webp
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json
+</IfModule>
+
+# Caching: long for media, short for code so updates show up quickly
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType video/webm "access plus 30 days"
+  ExpiresByType text/css "access plus 1 hour"
+  ExpiresByType application/javascript "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>

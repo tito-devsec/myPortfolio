@@ -87,6 +87,36 @@ Two Moran screenshots are listed but commented out in `js/data.js` because they 
 
 The original uses Neue Montreal (commercial). This build uses Inter from Google Fonts. If you buy Neue Montreal, add the `@font-face` rules to `css/main.css` and put `'Neue Montreal'` first in the `--font` variable.
 
+## URLs
+
+The public URLs have no `.html`: `/`, `/work`, `/about`, `/contact` and `/work/<slug>` for case pages. `.htaccess` rewrites them to the files (and redirects any old `.html` link to the clean form); `serve.json` does the same for local `npx serve`. Every page has `<base href="/">`, so the site must live at the root of the domain (not in a subfolder). Hosts without rewrite support, such as GitHub Pages, would only serve the `.html` URLs.
+
+## Deploying (titodevsec.online on Hostinger)
+
+The site is static: copy the files into `public_html` and it works.
+
+1. In the file manager, delete everything currently in `public_html` (old site).
+2. Upload the zip built by the PowerShell command in the notes (everything except `_old-site/`, `.claude/`, `.git/`, `admin/`), extract it in `public_html`, delete the zip.
+3. `index.html`, `.htaccess`, `css/`, `js/`, `images/` must sit directly in `public_html`.
+4. Make sure SSL is issued for the domain; `.htaccess` redirects to HTTPS.
+
+Hostinger runs LiteSpeed, which honours `.htaccess`. On a plain Nginx server the equivalent is:
+
+```nginx
+root /var/www/titodevsec.online;
+index index.html;
+error_page 404 /404.html;
+location = /work { try_files /work.html =404; }
+location = /about { try_files /about.html =404; }
+location = /contact { try_files /contact.html =404; }
+location ~ ^/work/([A-Za-z0-9_-]+)/?$ { rewrite ^ /work-detail.html?p=$1 last; }
+location ~* \.(png|jpe?g|webp|svg|mp4|webm)$ { expires 30d; }
+location ~* \.(css|js)$ { expires 1h; }
+gzip on; gzip_types text/css application/javascript image/svg+xml;
+```
+
+Issue an SSL certificate for the domain (Let's Encrypt in the panel) before going live: the fonts, GSAP, Lenis, Barba and Three.js all load over HTTPS and browsers block them on an HTTP page.
+
 ## Next step: admin
 
 The contact form posts to `SITE.api + '/contact'` when `SITE.api` is set in `js/data.js`; with no API it falls back to opening your email client. The project/data shape in `js/data.js` is the shape the admin API should return.

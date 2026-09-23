@@ -107,8 +107,9 @@
     const host = $('#case', container);
     if (!host) return;
     if (!all.length) { host.innerHTML = '<section class="case-head"><h1 class="case-title">No projects yet</h1></section>'; return; }
-    // Slug comes from ?p=<slug>; the hash is accepted too in case a host strips query strings.
-    const slug = url.searchParams.get('p') || (url.hash || '').replace(/^#/, '');
+    // Slug from the pretty path /work/<slug>, else ?p=<slug>, else #<slug>.
+    const m = url.pathname.match(/\/work\/([^/?#]+)\/?$/i);
+    const slug = (m && decodeURIComponent(m[1])) || url.searchParams.get('p') || (url.hash || '').replace(/^#/, '');
     let i = all.findIndex((p) => p.slug === slug);
     if (i < 0) i = 0;
     const p = all[i];

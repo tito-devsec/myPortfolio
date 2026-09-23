@@ -57,11 +57,12 @@
   };
 
   /* ---------- Helpers ---------- */
+  // Page label from a namespace or a URL path: '/work/moranai' → 'Work', '/about' → 'About'.
   function labelFor(x) {
-    const file = String(x || '').split('/').pop().toLowerCase();
-    if (file.startsWith('contact')) return 'Contact';
-    if (file.startsWith('about')) return 'About';
-    if (file.startsWith('work')) return 'Work';
+    const s = String(x || '').toLowerCase().split('?')[0].split('#')[0];
+    if (/contact/.test(s)) return 'Contact';
+    if (/about/.test(s)) return 'About';
+    if (/work/.test(s)) return 'Work';
     return 'Home';
   }
   App.labelFor = labelFor;
@@ -310,9 +311,9 @@
 
   /* ---------- Templates ---------- */
   const R = (App.render = {
-    // Case URL carries the slug twice on purpose: the query is the primary source, the hash
-    // survives redirects that strip query strings (e.g. cached "clean URL" redirects).
-    caseUrl(slug) { return `work-detail.html?p=${esc(slug)}#${esc(slug)}`; },
+    // Pretty case URL, served by the rewrite rules in .htaccess (and serve.json locally).
+    // The page also understands /work-detail?p=<slug> and #<slug> as fallbacks.
+    caseUrl(slug) { return `/work/${esc(slug)}`; },
     socials(cls) {
       return (SITE.socials || []).map((s) => s.url
         ? `<a class="${cls}" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`
@@ -337,7 +338,7 @@
             <h2 data-reveal="words">Let's work together</h2>
           </div>
           <div class="cta__line">
-            <div class="cta__btn-wrap"><a class="btn-circle btn-circle--blue magnetic" href="contact.html"><span class="magnetic__inner">Get in touch</span><span class="btn__fill"></span></a></div>
+            <div class="cta__btn-wrap"><a class="btn-circle btn-circle--blue magnetic" href="/contact"><span class="magnetic__inner">Get in touch</span><span class="btn__fill"></span></a></div>
           </div>
           <div class="cta__pills">
             <a class="btn-round btn-round--ghost magnetic" href="mailto:${esc(p.email)}"><span class="magnetic__inner">${esc(p.email)}</span><span class="btn__fill"></span></a>
@@ -464,7 +465,7 @@
           <div class="next-case__img" data-parallax><img src="${esc(next.cover)}" alt="${esc(next.title)}" loading="lazy"${next.placeholder ? ` data-fallback="${esc(next.placeholder)}"` : ''} /></div>
         </a>
         <div class="next-case__line"><a class="btn-circle btn-circle--blue magnetic" href="${R.caseUrl(next.slug)}"><span class="magnetic__inner">Next case</span><span class="btn__fill"></span></a></div>
-        <div class="next-case__all"><a class="btn-round btn-round--ghost magnetic" href="work.html"><span class="magnetic__inner">All work<sup>${total}</sup></span><span class="btn__fill"></span></a></div>
+        <div class="next-case__all"><a class="btn-round btn-round--ghost magnetic" href="/work"><span class="magnetic__inner">All work<sup>${total}</sup></span><span class="btn__fill"></span></a></div>
         ${R.footer()}
       </section>`;
     },

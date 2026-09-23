@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/" />
   <title>Titodevsec — Full-Stack Developer &amp; Cybersecurity Specialist</title>
   <meta name="description" content="Tito Oscar Mwaisengela (Titodevsec): freelance full-stack developer and cybersecurity specialist based in Dar es Salaam, Tanzania." />
   <meta property="og:title" content="Titodevsec — Full-Stack Developer &amp; Cybersecurity Specialist" />
   <meta property="og:description" content="Freelance full-stack developer and cybersecurity specialist based in Tanzania." />
-  <meta property="og:image" content="images/profile.jpeg" />
+  <meta property="og:image" content="https://titodevsec.online/images/profile.jpeg" />
+  <meta property="og:url" content="https://titodevsec.online/" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://titodevsec.online/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23455ce9'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial' font-size='34' fill='white'%3ET%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,15 +35,15 @@
 
 <!-- ═══ Header ═══ -->
 <header id="header" class="header" data-theme="light">
-  <a class="logo magnetic" href="index.html" aria-label="Titodevsec — home">
+  <a class="logo magnetic" href="/" aria-label="Titodevsec — home">
     <span class="logo__copy">©</span>
     <span class="logo__code">Code by</span>
     <span class="logo__name"><span class="logo__first">Tito</span><span class="logo__last">Mwaisengela</span></span>
   </a>
   <nav class="nav" aria-label="Primary">
-    <a class="nav__link magnetic" href="work.html" data-ns="work">Work</a>
-    <a class="nav__link magnetic" href="about.html" data-ns="about">About</a>
-    <a class="nav__link magnetic" href="contact.html" data-ns="contact">Contact</a>
+    <a class="nav__link magnetic" href="/work" data-ns="work">Work</a>
+    <a class="nav__link magnetic" href="/about" data-ns="about">About</a>
+    <a class="nav__link magnetic" href="/contact" data-ns="contact">Contact</a>
   </nav>
 </header>
 
@@ -54,10 +58,10 @@
     <div>
       <p class="panel__label">Navigation</p>
       <nav class="panel__nav" aria-label="Menu">
-        <a class="panel__link" href="index.html" data-ns="home">Home</a>
-        <a class="panel__link" href="work.html" data-ns="work">Work</a>
-        <a class="panel__link" href="about.html" data-ns="about">About</a>
-        <a class="panel__link" href="contact.html" data-ns="contact">Contact</a>
+        <a class="panel__link" href="/" data-ns="home">Home</a>
+        <a class="panel__link" href="/work" data-ns="work">Work</a>
+        <a class="panel__link" href="/about" data-ns="about">About</a>
+        <a class="panel__link" href="/contact" data-ns="contact">Contact</a>
       </nav>
     </div>
     <div class="panel__footer">
@@ -104,7 +108,7 @@
         <h2 class="intro__statement" data-reveal="words">Building secure, scalable digital systems where clean engineering meets enterprise-grade security. No shortcuts, always on the cutting edge.</h2>
         <div class="intro__side">
           <p data-reveal="fade">The combination of my passion for full-stack development, security &amp; systems thinking positions me in a unique place in the tech world.</p>
-          <a class="btn-circle btn-circle--dark magnetic" href="about.html"><span class="magnetic__inner">About me</span><span class="btn__fill"></span></a>
+          <a class="btn-circle btn-circle--dark magnetic" href="/about"><span class="magnetic__inner">About me</span><span class="btn__fill"></span></a>
         </div>
       </div>
     </section>
@@ -114,7 +118,7 @@
       <p class="label projects__label">Recent work</p>
       <div class="projects__list" id="home-projects"></div>
       <div class="projects__more">
-        <a class="btn-round btn-round--blue magnetic" href="work.html"><span class="magnetic__inner">More work<sup data-project-count></sup></span><span class="btn__fill"></span></a>
+        <a class="btn-round btn-round--blue magnetic" href="/work"><span class="magnetic__inner">More work<sup data-project-count></sup></span><span class="btn__fill"></span></a>
       </div>
     </section>
 
