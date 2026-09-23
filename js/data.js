@@ -32,6 +32,10 @@ window.SITE = {
     heroRotate: -24,
   },
 
+  // 3D laptop on case pages with a video (MacBook Air M4 model).
+  // finish: 'silver' | 'starlight' | 'skyblue' | 'midnight' | 'spacegrey'
+  laptop: { finish: 'silver' },
+
   // Preloader greetings (home page). First one holds longer, the rest flick by.
   greetings: ['Habari', 'Hello', 'Bonjour', 'Ciao', 'Olà', 'やあ', 'مرحبا', 'Hallå', 'Guten tag', 'Hallo'],
 

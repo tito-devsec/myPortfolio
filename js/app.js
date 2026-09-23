@@ -219,7 +219,11 @@
     if (!canWebGL) return;
     const url = new URL('js/laptop3d.js', document.baseURI).href;
     import(url)
-      .then((mod) => mod.mountLaptop({ container: scene, video, poster: video ? video.getAttribute('poster') : '', getProgress: () => state.p }))
+      .then((mod) => mod.mountLaptop({
+        container: scene, video, poster: video ? video.getAttribute('poster') : '',
+        getProgress: () => state.p,
+        finish: (SITE.laptop && SITE.laptop.finish) || 'silver',
+      }))
       .then((rig) => {
         if (state.destroyed) { rig.destroy(); return; }
         state.rig = rig;
